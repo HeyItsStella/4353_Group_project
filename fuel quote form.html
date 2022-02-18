@@ -10,10 +10,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
+
 <style>
 form{
   align-items:center;
 }
+
   input{
     font-weight: bold;
     padding: 5px;
@@ -21,9 +23,11 @@ form{
     border-radius: 2px;
     width: 200px;
   }
+
   #dob{
     width: 200px;
   }
+
   #submit{
     width: 214px;
     font-size: large;
@@ -31,15 +35,16 @@ form{
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
-  #submit:hover{
 
+  #submit:hover{
     background-color: white;
     color: black;
     cursor: pointer;
     border-color:black;
   }
+
   span{
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
   #color{
@@ -48,15 +53,16 @@ form{
   }
 
   #colorsubmit{
-      padding:2%;
-      font-size:15px;
-      background-color:transparent;
+    padding:2%;
+    font-size:15px;
+    background-color:transparent;
   }
+
  .center{
-     margin-left:auto;
-     margin-right:auto;
-     align-items:center;
-     justify-content:center;
+    margin-left:auto;
+    margin-right:auto;
+    align-items:center;
+    justify-content:center;
  }
 
  .bdy {
@@ -65,26 +71,24 @@ form{
   background-color: aquamarine;
   overflow:auto;
 }
-
 </style>
+
 <body class="bdy">
   <h1 class="text-center">Fuel Quote Form</h1>
   <hr size="3">
   <div class="container">
-      <div class="w-75 mx-auto">
+  <div class="w-75 mx-auto">
 
-   <form class="form-group centered" action="register" method="POST" style="align-items:center;">
-        <input class="form-control" type="text" name="firstname" id="firstname" placeholder="Gallons of Fuel" required></input><br><br>
-        <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Address" required></input><br><br>
-        <input class="form-control" type="email" name="email" id="email" placeholder="Date" required></input><br><br>
-        <input class="form-control" type="password" name="password" id="password" placeholder="Price" required></input><br><br>
-        <input class="form-control centered mx-auto" type="date" name="dob" id="dob" placeholder="DOB" ></input><br><br>
-
-        <input class="form-control centered mx-auto" type="submit" name="submit" id="submit" value="SUBMIT"></input><br>
+  <form class="form-group centered" action="register" method="POST" style="align-items:center;">
+  <input class="form-control" type="text" name="firstname" id="firstname" placeholder="Gallons of Fuel" required></input><br><br>
+  <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Address" required></input><br><br>
+  <input class="form-control" type="email" name="email" id="email" placeholder="Date" required></input><br><br>
+  <input class="form-control" type="password" name="password" id="password" placeholder="Price" required></input><br><br>
+  <input class="form-control centered mx-auto" type="date" name="dob" id="dob" placeholder="DOB" ></input><br><br>
+  <input class="form-control centered mx-auto" type="submit" name="submit" id="submit" value="SUBMIT"></input><br>
         
-
-   </form><br><br>
-   </div>
+  </form><br><br>
+  </div>
   </div>
   <script src="js/scripts.js"></script>
 
