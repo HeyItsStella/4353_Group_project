@@ -70,13 +70,13 @@ a:link {
   }
   
   a:visited {
-    color: rgb(105, 104, 104);
+    color: rgb(78, 78, 78);
     background-color: transparent;
     text-decoration: none;
   }
   
   a:hover {
-    color: rgb(87, 82, 107);
+    color: rgb(43, 42, 46);
     background-color: transparent;
     text-decoration: underline;
   }
