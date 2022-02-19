@@ -13,7 +13,7 @@
             <span class = "brand"><a href="../index.html"> QuotEZ</a></span> 
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">Manage profile</a></li>
+                    <li><a href="profile.html">Manage profile</a></li>
                     <li><a href="registration.html">Sign up</a></li>
                    
                 </ul>
@@ -24,21 +24,26 @@
         <div class= "form">
             <div class="quote-form-box-1"> 
                 <h2>Fuel Quote Form</h2>  
-            <form action="/action_page.php">
-                <label class="info" for="num-gallons">Number of Gallons:</label> <br>
-                <input class="info-input" type = "number" id="num-gallons" name="num-gallons" required min="0" maxlength="8" size="20"> <br>
-                <label class="info" for="address">Delivery Address:</label><br>
-                <input class="info-input" type= "text" id="address" name="address" disabled size="20" placeholder="Auto Filled"><br> <!--need link to address of client profile---->
-                <label class="info" for="date">Delivery Date:</label><br>
-                <input class="info-input" type="date" id="date" name="date" required><br>
+                <div class = "center-form">
+                <form action="/action_page.php">
+                     <label class="info" for="num-gallons">Number of Gallons:</label> <br>
+                    <input class="info-input" type = "number" id="num-gallons" name="num-gallons" required min="0" maxlength="8" size="20"> <br>
+                    <label class="info" for="address">Delivery Address:</label><br>
+                    <input class="info-input" type= "text" id="address" name="address" disabled size="20" placeholder="Auto Filled"><br> <!--need link to address of client profile---->
+                    <label class="info" for="date">Delivery Date:</label><br>
+                    <input class="info-input" type="date" id="date" name="date" required><br>
 
-                <input class ="calc-button" type="submit" name="submit" id="submit" value="CALCULATE"><br>
+                 <input class ="calc-button" type="submit" name="submit" id="submit" value="CALCULATE"><br>
 
-                <label>Suggested Price / Gallon</label>
+                <!---- <label>Suggested Price / Gallon</label>  --- may need to add suggested price/gallon--->
             </form>
+            </div>
             </div>
         </div>
 
+        <div class="picture">
+            <img class="black_white_pic" src="../img/cutted_black_white.png" alt= "petrochemical">
+        </div>
 
     </body>
 </html>

@@ -155,9 +155,8 @@ div .black_white_pic{
 
 /**********below is for fuel_quote_form **********/
 
-body div .form{
-    background-color:white;
-}
+
+
 .quote-form-box-1
 {
     text-align:center;
@@ -171,4 +170,17 @@ body div .form{
     background-color: white;
 }
 
-
+form{
+    background-color: white;
+    font-size: 17px;
+    text-align:center;
+}
+label.info{
+    background-color: white;
+}
+input.info-input{
+    padding: 15px;
+   background-color: rgb(230, 230, 230);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
