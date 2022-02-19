@@ -95,6 +95,7 @@ a:link {
      padding: 10%;
      align-items: center;
      background-color: white;
+     gap: 20px;
  }
 
 
@@ -127,6 +128,7 @@ div .box-2{
 .box-1{
     border:2px dotted rgb(155, 139, 109);
     padding-left: 10px;
+    background-color:white;
 }
 
 #button-1,
