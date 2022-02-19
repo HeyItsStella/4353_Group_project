@@ -203,3 +203,34 @@ input.info-input{
     cursor:pointer;
     border-radius: 1em;
 }
+
+/***********quote history ************/
+
+div.body-box{
+    display: block;
+    background-color: white;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 3px solid #8f816e;
+    text-align: left;
+    padding: 8px;
+    background-color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: white;
+  }
+.body-box h2{
+    margin-top:1px;
+    text-align: center;
+    background-color: white;
+    padding-top:20px;
+    font-size: 35px;
+    
+}
