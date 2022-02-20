@@ -9,6 +9,12 @@
   margin-left:500px;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: aquamarine;
+  margin: 0;
+}
+
 h1{
   text-align: center;
   border-bottom: 2px dotted gray;
@@ -26,8 +32,7 @@ h1{
   margin-right:150px;
   margin-left:150px;
   border-radius: 10px;
-  color: white;
-  background-color: #ad342f;
+  background-color: yellow;
 }
 
 a:visited{
@@ -42,8 +47,7 @@ a:visited{
   margin-right:100px;
   margin-left:100px;
   border-radius: 10px;
-  color: white;
-  background-color: #504e4e;
+  background-color: pink;
 }
 
 
