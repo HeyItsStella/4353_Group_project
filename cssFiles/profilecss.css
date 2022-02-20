@@ -17,6 +17,12 @@
     border-bottom: 2px dotted gray;
   }
 
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: aquamarine;
+    margin: 0;
+  }
+
    .container-2{
       text-align: center;
   }
