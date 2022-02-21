@@ -3,10 +3,9 @@
   border-right: 5px solid black;
   border-left: 5px solid black;
   border-bottom: 5px solid black;
-  margin-top:100px;
-  margin-bottom:100px;
-  margin-right:500px;
-  margin-left:500px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 body {
@@ -32,7 +31,7 @@ h1{
   margin-right:150px;
   margin-left:150px;
   border-radius: 10px;
-  background-color: yellow;
+  background-color: black;
 }
 
 a:visited{
@@ -47,7 +46,54 @@ a:visited{
   margin-right:100px;
   margin-left:100px;
   border-radius: 10px;
-  background-color: pink;
+  background-color: black;
 }
 
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
 
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+}
+
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
