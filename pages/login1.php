@@ -13,7 +13,7 @@
 <br>
 <div class="container">
   <h1> "Welcome Back!" </h1>
-  <form method="POST">
+  <form action="home.html" method="POST">
   <!--action="/action_page.php">-->
     <label for="usrname">Username/E-Mail Address</label>
     <input type="text" id="usrname" name="usrname" required>
@@ -114,4 +114,5 @@ $fp = fopen('data.txt', 'a');
 fwrite($fp, $data);
 fclose($fp);
 }
+
 ?>
