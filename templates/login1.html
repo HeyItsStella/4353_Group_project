@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"> 
-    <link rel="stylesheet" href="../cssFiles/logincss.css">
-    <title>Login</title>
-  </head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>QuotEZ</title>
+<link rel="stylesheet" href= "{{ url_for('static', filename='css/login.css') }}">
+<meta name ="viewport" content ="width=device-width, intial-scale=1">
+</head>
+
 <body>
-<a class="home" href="../index.html" style="color: black">Home</a>
+
 <br>
 <br>
 <br>
 <br>
+
 <div class="container">
-  <h1> "Welcome Back!" </h1>
+  <div class="header-container">
+  <a href="/"><img class ="logo" src="{{ url_for('static', filename='img/temp_logo.png') }}" alt= "logo"></a>
+  <span class = "brand"><a href="/"> QuotEZ</a></span> 
+  </div>
+
+  <h1> Welcome! </h1>
   <form method="POST">
   <!--action="/action_page.php">-->
-    <label for="usrname">Username/E-Mail Address</label>
-    <input type="text" id="usrname" name="usrname" required>
-    <label for="psw">Password</label>
-    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-    <input type="submit" value="Login">
-    <!--<input type="submit" value="Does Not Have An Account? Register Now!">-->
-    <a href="../templates/registration.html">Does Not Have An Account? Register Now!</a>
+  <label for="usrname">Username/E-Mail Address</label>
+  <input type="text" id="usrname" name="usrname" required>
+  <label for="psw">Password</label>
+  <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+  <input type="submit" value="Login">
+  <!--<input type="submit" value="Does Not Have An Account? Register Now!">-->
+  <a href="/register">Does Not Have An Account? Register Now!</a>
   </form>
 </div>
 
@@ -93,5 +101,12 @@ myInput.onkeyup = function() {
 }
 </script>
 
+  <div class="center">
+      <h2>About us</h2>
+      <p>Insert description here blablablabla 啊吧啊吧 Insert description here blablablabla Insert description here blablablabla Insert description here blablablabla Insert description here blablablabla Insert description here blablablabla Insert description here blablablabla Insert description here blablablabla   </p>
+      <!--<p>photos credit to: pixabay.com</p>-->
+      <!--<img class="black_white_pic" src="{{ url_for('static', filename='img/cutted_black_white.png') }}" alt= "petrochemical">-->
+  </div>
+        
 </body>
 </html>
