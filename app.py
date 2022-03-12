@@ -15,7 +15,7 @@ def land():
 def profile():
     return render_template('profile.html')
 
-@app.route('/register/')
+@app.route('/reg/')
 def createProfile():
     return render_template('registration.html')
    

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8"> 
-    <link rel="stylesheet" href="../cssFiles/registrationCss.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registrationCss.css') }}">
     <title>Registration</title>
   </head>
   <body>
-    <a class="home" href="../index.html">Home</a>
+    <!--<a class="home" href="/">Home</a>-->
     <div class="container">
 
     <form action="infos.txt">
@@ -18,7 +18,7 @@
     <li>Must be between 8-64 characters</li>
     <li>Must include a capital letter and a number</li>
     </ul>
-    <p class= "button"> <a href="../templates/registration.html" > Register</a> </p>
+    <p class= "button"> <input type="submit" value="Register"> </p>
     <!--https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Styling_text/Web_fonts-->
     </form>
 
