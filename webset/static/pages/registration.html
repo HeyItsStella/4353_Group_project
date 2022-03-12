@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='cssFiles/registrationCss.css' ) }} ">
+    <title>Registration</title>
+</head>
+
+<body>
+    <a class="home " href="/">Home</a>
+    <div class="container ">
+        <form method="post" action="/registration">
+
+
+            <h1> "Create an Account " </h1>
+            <p class="line1 "> Username <br> <input placeholder="Enter email or username " name="name" /> </p>
+            <p class="line2 "> Password <br> <input placeholder="Enter password " name="password" /> </p>
+            <p class="line3 "> Confirm Password <br> <input placeholder="Re—enter your Password" name="password_confirm" /> </p>
+            <ul class="line4 ">
+                <li>Must be between 8-64 characters</li>
+                <li>Must include a capital letter and a number</li>
+            </ul>
+            <button class="button" type="submit"> Register</button>
+        </form>
+        <!--https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Styling_text/Web_fonts-->
+    </div>
+
+</body>
+
+</html>
