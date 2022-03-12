@@ -21,8 +21,7 @@
   </div>
 
   <h1> Welcome! </h1>
-  <form method="POST">
-  <!--action="/action_page.php">-->
+  <form id="loginform" method="post" action="{{ url_for('land') }}">
   <label for="usrname">Username/E-Mail Address</label>
   <input type="text" id="usrname" name="usrname" required>
   <label for="psw">Password</label>

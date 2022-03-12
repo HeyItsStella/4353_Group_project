@@ -1,7 +1,21 @@
+#from crypt import methods
 from flask import Flask, request, render_template
+from wtforms import Form, BooleanField, StringField, PasswordField, validators
+
 app = Flask(__name__)
 
 #Run py file for 192, run commend "python -m flask run" for default
+
+class RegistrationForm(Form):
+    username = StringField('Username', [validators.Length(min=4, max=25)])
+    email = StringField('Email Address', [validators.Length(min=6, max=35)])
+    password = PasswordField('New Password', [
+        validators.DataRequired(),
+        validators.EqualTo('confirm', message='Passwords must match')
+    ])
+    confirm = PasswordField('Repeat Password')
+    accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
+
 @app.route('/')
 def index():
     return render_template('login1.html')
@@ -10,14 +24,32 @@ def index():
 def land():
     return render_template('landingPage.html')
 
+
+@app.route('/land/', methods=['post'])
+def landform():
+    return render_template('landingPage.html')
+
+@app.route('/reg/')
+def createProfile():
+    return render_template('registration.html')
+
+@app.route('/reg/', methods=['post'])
+def regform():
+    form = RegistrationForm(request.form)
+    #validate data here when we use db
+    #if request.method == 'POST' and form.validate():
+        #user = User(form.username.data, form.email.data,
+        #            form.password.data)
+        #db_session.add(user)
+        #flash('Thanks for registering')
+        #return redirect(url_for('login'))
+    return render_template('registration.html', form=form)
+
 ##########################################################
 @app.route('/profile/')
 def profile():
     return render_template('profile.html')
 
-@app.route('/reg/')
-def createProfile():
-    return render_template('registration.html')
    
 ##########################################################
 @app.route('/getQuote/')
