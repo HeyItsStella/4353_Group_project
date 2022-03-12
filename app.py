@@ -24,7 +24,6 @@ def index():
 def land():
     return render_template('landingPage.html')
 
-
 @app.route('/land/', methods=['post'])
 def landform():
     return render_template('landingPage.html')
