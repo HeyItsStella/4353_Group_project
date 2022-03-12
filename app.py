@@ -26,7 +26,15 @@ def land():
 
 @app.route('/land/', methods=['post'])
 def landform():
-    return render_template('landingPage.html')
+    form = RegistrationForm(request.form)
+    #validate data here when we use db
+    #if request.method == 'POST' and form.validate():
+        #user = User(form.username.data, form.email.data,
+        #            form.password.data)
+        #db_session.add(user)
+        #flash('Thanks for registering')
+        #return redirect(url_for('login'))
+    return render_template('landingPage.html', form=form)
 
 @app.route('/reg/')
 def createProfile():
@@ -44,13 +52,13 @@ def regform():
         #return redirect(url_for('login'))
     return render_template('registration.html', form=form)
 
-##########################################################
+##################################################################################################
 @app.route('/profile/')
 def profile():
     return render_template('profile.html')
 
    
-##########################################################
+##################################################################################################
 @app.route('/getQuote/')
 def getQuote():
     return render_template('quote_form.html')
