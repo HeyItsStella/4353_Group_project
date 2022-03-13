@@ -1,3 +1,48 @@
+*{
+  background: white;
+}
+
+.logo{
+  width: 140px;
+  height: auto;
+}
+
+div.header-container{
+  display: flex;
+
+}
+
+.brand{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 50px;
+  font-weight:bold;
+  margin-top: 51px;
+  cursor:pointer;
+  
+}
+span.brand a{
+  text-decoration: none;
+  color:rgb(51, 48, 48)
+}
+span.brand a:visited{
+  text-decoration: none;
+  color:rgb(51, 48, 48);
+}
+.center {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .container {
   border-top: 5px solid black;
   border-right: 5px solid black;
