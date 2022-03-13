@@ -10,13 +10,11 @@
 
 <body>
     <div class="header-container">
-        <a href="index.html"><img class="logo" src="{{ url_for('static', filename='img/temp_logo.png') }}" alt="logo"></a>
-        <span class="brand"><a href="index.html"> QuotEZ</a></span>
+        <a href="/"><img class="logo" src="{{ url_for('static', filename='img/temp_logo.png') }}" alt="logo"></a>
+        <span class="brand"><a href="/">QuotEZ</a></span>
         <nav>
             <ul class="nav-links">
-                <li><a href="/profile">Manage profile</a></li>
                 <li><a href="/signup">Sign up</a></li>
-
             </ul>
         </nav>
         <a class="log-in" href="/login"><button>Log in</button></a>
@@ -31,8 +29,8 @@
                 <p>photos credit to: pixabay.com</p>
             </div>
             <div class="box-2">
-                <button id="button-1"><a href="/quote">Get Your Quote Now</a></button>
-                <button id="button-2"><a href="/quote_history">Check Past Quotes</a></button>
+                <button id="button-1"><a href="./quote">Get Your Quote Now</a></button>
+                <button id="button-2"><a href="./quote_history">Check Past Quotes</a></button>
             </div>
 
         </div>
