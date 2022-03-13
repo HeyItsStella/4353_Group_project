@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href=" {{ url_for( 'static', filename='cssFiles/logincss.css' ) }} ">
-    <meta name ="viewport" content ="width=device-width, intial-scale=1">
-    <title>Login</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href=" {{ url_for( 'static', filename='cssFiles/logincss.css' ) }} ">
+        <meta name ="viewport" content ="width=device-width, intial-scale=1">
+        <title>Login</title>
+    </head>
 
 <body>
     <a class="home" href="/" style="color: black">Home</a>
+    
     <br>
     <br>
     <br>
     <br>
+
     <div class="container">
         <h1>"Welcome Back!" </h1>
         <form action="/login" method="post">
@@ -94,7 +95,5 @@
             }
         }
     </script>
-
 </body>
-
 </html>
