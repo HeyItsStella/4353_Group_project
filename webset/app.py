@@ -3,6 +3,8 @@ from flask import request
 from flask import render_template, session , redirect
 import os
 
+#use python -m flask run for ip 127, run file for pc ip
+
 app = Flask(__name__, template_folder='static')
 
 app.secret_key = os.urandom(24)
