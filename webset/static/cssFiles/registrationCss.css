@@ -20,9 +20,7 @@ body {
     margin: 0;
 }
 
-.line1,
-.line2,
-.line3 {
+.line1, .line2, .line3 {
     text-align: center;
 }
 
@@ -42,7 +40,7 @@ a:visited {
     background-color: #ad342f;
     width: 120px;
 }
-
+/*
 .home {
     text-align: left;
     font-size: 30px;
@@ -57,4 +55,86 @@ a:visited {
     border-right: 2px solid black;
     border-left: 2px solid black;
     border-bottom: 2px solid black;
+}*/
+
+
+
+
+
+
+.button1{
+  font-weight:bold;
+  text-align: center;
+  margin-top:10px;
+  margin-right:100px;
+  margin-left:100px;
+  border-radius: 10px;
+  background-color: black;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+}
+
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+.container-2{
+  text-align: center;
+}
+
+.home{
+  text-align: left;
+  font-size: 30px;
+  color: red;
+  margin-top:20px;
+  margin-right:150px;
+  margin-left:150px;
+  border-radius: 10px;
+  background-color: #eef0f1;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
 }
