@@ -17,6 +17,11 @@ histories= {}
 def home():
     return render_template('index.html')
 
+# landing page
+@app.route('/land', methods=['GET', 'POST'])
+def land():
+    return render_template('pages/landingPage.html')
+
 # registration form
 @app.route('/signup', methods=['GET'])
 def signup_form():
@@ -46,7 +51,7 @@ def login():
         return "username and password dost not match"
     
     session['user'] = name
-    return redirect("/")
+    return redirect("/land")
     
 
 @app.route('/registration', methods=['POST'])
@@ -67,7 +72,7 @@ def registration():
     
     if password.isalnum() and not password.isdigit() and not password.isalpha():
         users[name] = password
-        return redirect('/')
+        return redirect('/land')
     else:
         return "password must include a capital letter and a number"
         
@@ -104,7 +109,7 @@ def update_profile():
     
     profiles[session['user']] = profile
     
-    return redirect("/")
+    return redirect("/land")
 
 # manage  quote
 @app.route('/quote', methods=['GET'])
@@ -149,6 +154,9 @@ def quote_history():
         history = histories[user]
         
     return render_template("pages/quote_history.html", history=history)
+
+
+
 
 if __name__ == '__main__':
     app.run()

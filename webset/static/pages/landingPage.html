@@ -3,17 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title>QuotEZ</title>
-        <link rel="stylesheet" href= "{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href= "{{ url_for('static', filename='cssFiles/style.css') }}">
         <meta name ="viewport" content ="width=device-width, intial-scale=1">
 
     </head>
     <body>
         <div class="header-container">
-            <a href="home.html"><img class ="logo" src="{{ url_for('static', filename='img/temp_logo.png') }}" alt= "logo"></a>
-            <span class = "brand"><a href="home.html"> QuotEZ</a></span> 
+            <a href="landingPage.html"><img class ="logo" src="{{ url_for('static', filename='img/temp_logo.png') }}" alt= "logo"></a>
+            <span class = "brand"><a href="landingPage.html">QuotEZ</a></span> 
             <nav>
                 <ul class="nav-links">
-                    <li><a href="../templates/profile.html">Manage profile</a></li>
+                    <li><a href="./profile.html">Manage profile</a></li>
                 </ul>
             </nav>
         </div>
@@ -26,8 +26,8 @@
                     <p>photos credit to: pixabay.com</p>
                 </div>
                 <div class="box-2">
-                    <button id="button-1"><a href="../templates/quote_form.html">Get Your Quote Now</a></button>
-                    <button id="button-2"><a href="../templates/quote_history.html">Check Past Quotes</a></button>
+                    <button id="button-1"><a href="./quote_form.html">Get Your Quote Now</a></button>
+                    <button id="button-2"><a href="./quote_history.html">Check Past Quotes</a></button>
                 </div>
 
             </div>
