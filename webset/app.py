@@ -158,7 +158,5 @@ def quote_history():
     return render_template("pages/quote_history.html", history=history)
 
 
-
-
 if __name__ == '__main__':
     app.run()
