@@ -1,18 +1,19 @@
-from flask import Flask
+from flask import Flask, flash
 from flask import request
 from flask import render_template, session , redirect
+
 import os
+import os.path
+import sqlite3
+
+currentdirectory = os.path.dirname(os.path.abspath(__file__))
 
 #use "python -m flask run" for ip 127, run file for pc ip
-
 app = Flask(__name__, template_folder='static')
-
 app.secret_key = os.urandom(24)
-
 users = {'test': 'Abc12345'}
 profiles = {}
 histories= {}
-
 
 # home page
 @app.route('/', methods=['GET', 'POST'])
@@ -39,7 +40,7 @@ def login_form():
 def login():
     name = request.form['username']
     password = request.form['psw']
-    
+        
     if len(name) == 0:
         return "please enter username"
     
@@ -55,31 +56,34 @@ def login():
     session['user'] = name
     return redirect("/land")
     
-
-@app.route('/registration', methods=['POST'])
+    
+@app.route('/registration', methods=['POST', 'GET'])
 def registration():
-    name = request.form['name']
-    password = request.form['password']
-    password_confirm = request.form['password_confirm']
-    
+    #password_confirm = request.form['psw_con']
+        
     # make sure password satisfy requirements
-    if password != password_confirm:
-        return "password dost not match"
+    #if password != password_confirm:
+    #    return "password dost not match"
+    if request.method == "POST":  
+        name = request.form['usrname']
+        password = request.form['psw']  
+        if name in users:
+            flash('this shit exist man wtf')
+            return redirect(request.url)
+        
+        if len(password) < 8 or len(password) > 64:
+            return "password should be 8-64 characters"
+
+        if password.isalnum() and not password.isdigit() and not password.isalpha():
+            users[name] = password
+            return redirect('/land')
+        else:
+            #return "password must include a capital letter and a number"
+            return redirect('/land')
     
-    if name in users:
-        return "name is exists"
-    
-    if len(password) < 8 or len(password) > 64:
-        return "password should be 8-64 characters"
-    
-    if password.isalnum() and not password.isdigit() and not password.isalpha():
-        users[name] = password
-        return redirect('/land')
-    else:
-        return "password must include a capital letter and a number"
+    return render_template("pages/registration.html")
         
   
-    
 # manage user profile
 @app.route('/profile', methods=['GET'])
 def profile_page():
@@ -89,7 +93,7 @@ def profile_page():
     if session['user'] in profiles:
         profile = profiles[session['user']]
         
-    return render_template("pages/profile.html", profile=profile)
+    return render_template("./static/pages/profile.html", profile=profile)
 
 
 # process profile form

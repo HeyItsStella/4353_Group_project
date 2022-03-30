@@ -40,26 +40,14 @@ a:visited {
     background-color: #ad342f;
     width: 120px;
 }
-/*
-.home {
-    text-align: left;
-    font-size: 30px;
-    color: black;
-    margin-top: 20px;
-    margin-right: 150px;
-    margin-left: 150px;
-    border-radius: 10px;
-    color: rgb(15, 14, 14);
-    background-color: #eef0f1;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    border-left: 2px solid black;
-    border-bottom: 2px solid black;
-}*/
 
-
-
-
+.container-msg {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 500px;
+  margin-left: 500px;
+  background-color: red;
+}
 
 
 .button1{
@@ -85,6 +73,20 @@ input {
 input[type=submit] {
   background-color: #04AA6D;
   color: white;
+}
+
+#message-con {
+  display:none;
+  background: white;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message-con p {
+  padding: 10px 35px;
+  font-size: 18px;
 }
 
 #message {
@@ -120,8 +122,14 @@ input[type=submit] {
   left: -35px;
   content: "✖";
 }
+
 .container-2{
   text-align: center;
+}
+
+.container-s {
+  background-color: #f1f1f1;
+  padding: 20px;
 }
 
 .home{
