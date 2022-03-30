@@ -5,6 +5,7 @@ from flask import render_template, session , redirect
 import os
 import os.path
 import sqlite3
+import hashlib
 
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
 
@@ -89,12 +90,21 @@ def registration():
             if listOfTables == []:
                 #Table not found!
                 con.execute('''CREATE TABLE loginInfo(UserName, Pasword)''')
+                currentUser = name
+                txtPassword = password
+                currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+                con.execute("insert into loginInfo values (?, ?)", (currentUser, currentPassword))
+                con.commit()
+                con.close()
             else:
-                print('Table found!')
-            
-            con.commit()
-            con.close()
-            
+                #Table found!
+                currentUser = name
+                txtPassword = password
+                currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+                con.execute("insert into loginInfo values (?, ?)", (currentUser, currentPassword))
+                con.commit()
+                con.close()
+
             return redirect('/land')
         else:
             #return "password must include a capital letter and a number"
