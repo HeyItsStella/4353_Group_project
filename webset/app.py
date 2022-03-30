@@ -72,10 +72,29 @@ def registration():
             return redirect(request.url)
         
         if len(password) < 8 or len(password) > 64:
-            return "password should be 8-64 characters"
+            flash('password should be 8-64 characters')
+            return redirect(request.url)
 
         if password.isalnum() and not password.isdigit() and not password.isalpha():
             users[name] = password
+            
+            con = sqlite3.connect('db/loginInfo.db')
+            # create cursor object
+            cur = con.cursor()
+            
+            #Check if STUDENT table exists in the database
+            listOfTables = cur.execute(
+            """SELECT name FROM sqlite_master WHERE type='table'
+            AND name='loginInfo'; """).fetchall()
+            if listOfTables == []:
+                #Table not found!
+                con.execute('''CREATE TABLE loginInfo(UserName, Pasword)''')
+            else:
+                print('Table found!')
+            
+            con.commit()
+            con.close()
+            
             return redirect('/land')
         else:
             #return "password must include a capital letter and a number"
