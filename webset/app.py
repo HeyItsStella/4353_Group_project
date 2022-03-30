@@ -122,7 +122,7 @@ def profile_page():
     if session['user'] in profiles:
         profile = profiles[session['user']]
         
-    return render_template("./static/pages/profile.html", profile=profile)
+    return render_template("pages/profile.html", profile=profile)
 
 
 # process profile form
