@@ -113,6 +113,7 @@ def registration():
         AND name='loginInfo'; """).fetchall()
         if listOfTables == []:
             #Table not found!
+            #如果需要添加其他数值，需要在这里添加，目前只有UsrName和Pasword
             con.execute('''CREATE TABLE loginInfo(UsrName, Pasword)''')
             #------------------------------------------------------------------------------
             currentUser = name
