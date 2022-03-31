@@ -7,9 +7,20 @@ import os.path
 import sqlite3
 import hashlib
 
-#这么import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#这样import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 logindb = os.path.join(PROJECT_ROOT, 'db', 'loginInfo.db')
+
+#Initialize the loginInfo.db database
+co = sqlite3.connect(logindb)
+c = co.cursor()
+ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='loginInfo'; """).fetchall()
+if ckTableExist == []:
+    c.execute('''CREATE TABLE loginInfo(UsrName, Pasword, yourstate, email, phone);''')
+else:
+    pass
+co.commit()
+co.close()
 
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
 
