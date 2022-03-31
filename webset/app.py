@@ -135,7 +135,7 @@ def registration():
                 con.close()
                 return redirect("/land")
             else:
-                #print("Nah")
+                #print("Nah") Nani1234
                 flash("Account already exist, Please login!!!")
                 return redirect(request.url)
         else:
