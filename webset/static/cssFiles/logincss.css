@@ -80,7 +80,7 @@ h1{
 }
 
 a:visited{
-  color:blanchedalmond;
+  color:black;
 }
 
 
@@ -102,9 +102,16 @@ input {
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
+  position: relative;
 }
 
 input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+}
+
+input[type=button] {
+  width: 80%;
   background-color: #04AA6D;
   color: white;
 }
@@ -119,6 +126,20 @@ input[type=submit] {
 }
 
 #message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+#message-con {
+  display:none;
+  background: white;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message-con p {
   padding: 10px 35px;
   font-size: 18px;
 }
@@ -144,6 +165,12 @@ input[type=submit] {
 }
 .container-2{
   text-align: center;
+}
+
+.container-msg {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 .home{

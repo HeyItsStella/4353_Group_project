@@ -48,15 +48,32 @@ def login():
     if len(password) == 0:
         return "please enter password"
     
-    if not name in users:
-        return "username dost not exist"
+    #if not name in users:
+    #    return "username dost not exist"
     
-    if users[name] != password:
-        return "username and password dost not match"
+    #if users[name] != password:
+    #    return "username and password dost not match"
     
     session['user'] = name
-    return redirect("/land")
     
+    conn = sqlite3.connect('db/loginInfo.db')
+    cur = conn.cursor()
+
+    currentUser = name
+    txtPassword = password
+    currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+
+    statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+    cur.execute(statement)
+    
+    if not cur.fetchone():  # An empty result evaluates to False.
+        flash("This account does not exist or username and password do not match")
+        return redirect(request.url)
+    else:
+        print("Welcome")
+    
+    return redirect("/land")
+#nani Nani1234
     
 @app.route('/registration', methods=['POST', 'GET'])
 def registration():
@@ -89,7 +106,7 @@ def registration():
             AND name='loginInfo'; """).fetchall()
             if listOfTables == []:
                 #Table not found!
-                con.execute('''CREATE TABLE loginInfo(UserName, Pasword)''')
+                con.execute('''CREATE TABLE loginInfo(UsrName, Pasword)''')
                 currentUser = name
                 txtPassword = password
                 currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
@@ -104,11 +121,10 @@ def registration():
                 con.execute("insert into loginInfo values (?, ?)", (currentUser, currentPassword))
                 con.commit()
                 con.close()
-
             return redirect('/land')
-        else:
+        #else:
             #return "password must include a capital letter and a number"
-            return redirect('/land')
+        #    return redirect('/land')
     
     return render_template("pages/registration.html")
         
