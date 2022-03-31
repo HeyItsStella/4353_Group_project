@@ -43,18 +43,20 @@ def login():
     password = request.form['psw']
         
     if len(name) == 0:
-        return "please enter username"
+        flash("Please enter a username!")
+        return redirect(request.url)
     
     if len(password) == 0:
-        return "please enter password"
+        flash("Please enter a password!")
+        return redirect(request.url)
     
     #if not name in users:
     #    return "username dost not exist"
-    
     #if users[name] != password:
     #    return "username and password dost not match"
+    #Nani1234
     
-    session['user'] = name
+    #session['user'] = name
     
     conn = sqlite3.connect('db/loginInfo.db')
     cur = conn.cursor()
@@ -67,12 +69,13 @@ def login():
     cur.execute(statement)
     
     if not cur.fetchone():  # An empty result evaluates to False.
-        flash("This account does not exist or username and password do not match")
+        flash("This account does not exist or username and password do not match!!!")
         return redirect(request.url)
     else:
-        print("Welcome")
+        #print("Welcome")
+        session['user'] = name
+        return redirect("/land")
     
-    return redirect("/land")
 #nani Nani1234
     
 @app.route('/registration', methods=['POST', 'GET'])
