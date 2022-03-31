@@ -24,6 +24,8 @@ def home():
 # landing page
 @app.route('/land', methods=['GET', 'POST'])
 def land():
+    if not 'user' in session:
+        return redirect('/login')
     return render_template('pages/landingPage.html')
 
 # registration form
