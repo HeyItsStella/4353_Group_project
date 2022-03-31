@@ -87,7 +87,8 @@ def registration():
     #    return "password dost not match"
     if request.method == "POST":  
         name = request.form['usrname']
-        password = request.form['psw']  
+        password = request.form['psw']
+        GETITLATER = ''
         #if name in users:
         #    flash('this shit exist man wtf')
         #    return redirect(request.url)
@@ -97,7 +98,7 @@ def registration():
         #    return redirect(request.url)
 
         #if password.isalnum() and not password.isdigit() and not password.isalpha():
-        #users[name] = password
+        #users[name] = password Nani1234
         
         con = sqlite3.connect('db/loginInfo.db')
         # create cursor object
@@ -113,8 +114,8 @@ def registration():
         AND name='loginInfo'; """).fetchall()
         if listOfTables == []:
             #Table not found!
-            #如果需要添加其他数值，可以在这里添加，目前只有UsrName和Pasword
-            con.execute('''CREATE TABLE loginInfo(UsrName, Pasword)''')
+            #TABLE IS CREATED HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            con.execute('''CREATE TABLE loginInfo(UsrName, Pasword, yourstate, email, phone);''')
             #------------------------------------------------------------------------------
             currentUser = name
             txtPassword = password
@@ -123,7 +124,7 @@ def registration():
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
-                con.execute("insert into loginInfo values (?, ?)", (currentUser, currentPassword))
+                con.execute("insert into loginInfo values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
                 con.commit()
                 con.close()
                 return redirect("/land")
@@ -140,7 +141,7 @@ def registration():
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
-                con.execute("insert into loginInfo values (?, ?)", (currentUser, currentPassword))
+                con.execute("insert into loginInfo values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
                 con.commit()
                 con.close()
                 return redirect("/land")
