@@ -7,6 +7,10 @@ import os.path
 import sqlite3
 import hashlib
 
+#这么import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
+logindb = os.path.join(PROJECT_ROOT, 'db', 'loginInfo.db')
+
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
 
 #use "python -m flask run" for ip 127, run file for pc ip
@@ -60,7 +64,7 @@ def login():
     
     #session['user'] = name
     
-    conn = sqlite3.connect('db/loginInfo.db')
+    conn = sqlite3.connect(logindb)
     cur = conn.cursor()
 
     currentUser = name
@@ -102,7 +106,7 @@ def registration():
         #if password.isalnum() and not password.isdigit() and not password.isalpha():
         #users[name] = password Nani1234
         
-        con = sqlite3.connect('db/loginInfo.db')
+        con = sqlite3.connect(logindb)
         # create cursor object
         cur = con.cursor()
         #------------------------------------------------------------------------------
