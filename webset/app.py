@@ -88,47 +88,70 @@ def registration():
     if request.method == "POST":  
         name = request.form['usrname']
         password = request.form['psw']  
-        if name in users:
-            flash('this shit exist man wtf')
-            return redirect(request.url)
+        #if name in users:
+        #    flash('this shit exist man wtf')
+        #    return redirect(request.url)
         
-        if len(password) < 8 or len(password) > 64:
-            flash('password should be 8-64 characters')
-            return redirect(request.url)
+        #if len(password) < 8 or len(password) > 64:
+        #    flash('password should be 8-64 characters')
+        #    return redirect(request.url)
 
-        if password.isalnum() and not password.isdigit() and not password.isalpha():
-            users[name] = password
-            
-            con = sqlite3.connect('db/loginInfo.db')
-            # create cursor object
-            cur = con.cursor()
-            
-            #Check if STUDENT table exists in the database
-            listOfTables = cur.execute(
-            """SELECT name FROM sqlite_master WHERE type='table'
-            AND name='loginInfo'; """).fetchall()
-            if listOfTables == []:
-                #Table not found!
-                con.execute('''CREATE TABLE loginInfo(UsrName, Pasword)''')
-                currentUser = name
-                txtPassword = password
-                currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+        #if password.isalnum() and not password.isdigit() and not password.isalpha():
+        #users[name] = password
+        
+        con = sqlite3.connect('db/loginInfo.db')
+        # create cursor object
+        cur = con.cursor()
+        #------------------------------------------------------------------------------
+        currentUser = name
+        txtPassword = password
+        currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+        #------------------------------------------------------------------------------
+        #Check if STUDENT table exists in the database
+        listOfTables = cur.execute(
+        """SELECT name FROM sqlite_master WHERE type='table'
+        AND name='loginInfo'; """).fetchall()
+        if listOfTables == []:
+            #Table not found!
+            con.execute('''CREATE TABLE loginInfo(UsrName, Pasword)''')
+            #------------------------------------------------------------------------------
+            currentUser = name
+            txtPassword = password
+            currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+            cur.execute(statement)
+            if not cur.fetchone():  # An empty result evaluates to False.
+                session['user'] = name
                 con.execute("insert into loginInfo values (?, ?)", (currentUser, currentPassword))
                 con.commit()
                 con.close()
+                return redirect("/land")
             else:
-                #Table found!
-                currentUser = name
-                txtPassword = password
-                currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+                #print("Nah")
+                flash("Account already exist, Please login!!!")
+                return redirect(request.url)
+        else:
+            #Table found!
+            currentUser = name
+            txtPassword = password
+            currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+            cur.execute(statement)
+            if not cur.fetchone():  # An empty result evaluates to False.
+                session['user'] = name
                 con.execute("insert into loginInfo values (?, ?)", (currentUser, currentPassword))
                 con.commit()
                 con.close()
-            return redirect('/land')
+                return redirect("/land")
+            else:
+                #print("Nah")
+                flash("Account already exist, Please login!!!")
+                return redirect(request.url)
+        #return redirect('/land')
         #else:
             #return "password must include a capital letter and a number"
         #    return redirect('/land')
-    
+        #------------------------------------------------------------------------------
     return render_template("pages/registration.html")
         
   
