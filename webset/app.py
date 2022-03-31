@@ -126,7 +126,8 @@ def registration():
             currentUser = name
             txtPassword = password
             currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
-            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+            #statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}';"
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
