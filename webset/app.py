@@ -287,10 +287,21 @@ def quote_history():
     history = []
     
     user = session['user']
-    if user in histories:
-        history = histories[user]
+    #if user in histories:
+    #    history = histories[user]
         
-    return render_template("pages/quote_history.html", history=history)
+    #####   connecting to db
+    con = sqlite3.connect(quote_app)
+    con.row_factory = sqlite3.Row
+    # create cursor object
+    cur = con.cursor()
+    statement =f"select num_gallon, address, delivery_date, price_pergal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName and q.UsrName='{user}';"
+    cur.execute(statement)
+    
+    ###for user in quote_app("select num_gallon, address, delivery_date, price_pergal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName;"):
+    rows = cur.fetchall()
+    
+    return render_template("pages/quote_history.html", history=rows)
 
 
 if __name__ == '__main__':
