@@ -1,6 +1,7 @@
 from flask import Flask, flash
 from flask import request
 from flask import render_template, session , redirect
+from flask_session import Session
 
 import os
 import os.path
@@ -27,6 +28,12 @@ currentdirectory = os.path.dirname(os.path.abspath(__file__))
 #use "python -m flask run" for ip 127, run file for pc ip
 app = Flask(__name__, template_folder='static')
 app.secret_key = os.urandom(24)
+
+#新的session管理，如果不工作需要 pip install flask-session
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
 users = {'test': 'Abc12345'}
 profiles = {}
 histories= {}
