@@ -29,10 +29,11 @@ currentdirectory = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__, template_folder='static')
 app.secret_key = os.urandom(24)
 
-#新的session管理，如果不工作需要 pip install flask-session
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+#新的session管理，如果不工作需要 pip install flask-session (不用了)
+#app.config["SESSION_PERMANENT"] = False
+#app.config["SESSION_TYPE"] = "filesystem"
+#Session(app)
+
 
 users = {'test': 'Abc12345'}
 profiles = {}
@@ -54,6 +55,15 @@ def land():
 @app.route('/signup', methods=['GET'])
 def signup_form():
     return render_template("pages/registration.html")
+
+# log out Nani1234
+@app.route("/logout")
+def logout():
+    session['user'] = None
+    #print(session)
+    session.pop('user', None);
+    #print(session)
+    return redirect("/")
 
 # login form
 @app.route('/login', methods=['GET'])
