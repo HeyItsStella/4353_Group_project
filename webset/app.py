@@ -20,10 +20,12 @@ users = {'test': 'Abc12345'}
 profiles = {}
 histories= {}
 
+
 # home page
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
+
 
 # landing page
 @app.route('/land', methods=['GET', 'POST'])
@@ -35,7 +37,7 @@ def land():
 # registration form
 @app.route('/signup', methods=['GET'])
 def signup_form():
-    return render_template("pages/registration.html")
+    return render_template("pages/registration.html")  #once sign up data proven valid, take user to landing page
 
 # login form
 @app.route('/login', methods=['GET'])
@@ -83,6 +85,8 @@ def login():
         return redirect("/land")
     
 #nani Nani1234
+   
+   
     
 @app.route('/registration', methods=['POST', 'GET'])
 def registration():
@@ -226,6 +230,7 @@ def process_quote():
         histories[user] = [(number, address, date)]
         
     return redirect('/quote_history')
+
 
 @app.route('/quote_history', methods=['GET'])
 def quote_history():
