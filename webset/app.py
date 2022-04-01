@@ -11,14 +11,22 @@ import hashlib
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
 #这样import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
-logindb = os.path.join(PROJECT_ROOT, 'db', 'loginInfo.db')
+quote_app = os.path.join(PROJECT_ROOT, 'db', 'quote_app.db')
 
 #Initialize the loginInfo.db database
-co = sqlite3.connect(logindb)
+co = sqlite3.connect(quote_app)
 c = co.cursor()
-ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='loginInfo'; """).fetchall()
+ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='login_customer_info'; """).fetchall()
 if ckTableExist == []:
-    c.execute('''CREATE TABLE loginInfo(UsrName, Pasword, yourstate, email, phone);''')
+    ###创建table的statement，需要完善+修改
+    c.execute('''CREATE TABLE "login_customer_info" (  
+	"UsrName"	TEXT NOT NULL UNIQUE,
+	"Pasword"	TEXT NOT NULL,
+	"yourstate"	TEXT,
+	"email"	TEXT,
+	"phone"	,
+	PRIMARY KEY("UsrName")
+)''')
 else:
     pass
 co.commit()
@@ -97,14 +105,14 @@ def login():
     
     #session['user'] = name
     
-    conn = sqlite3.connect(logindb)
+    conn = sqlite3.connect(quote_app)
     cur = conn.cursor()
 
     currentUser = name
     txtPassword = password
     currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
 
-    statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+    statement = f"SELECT UsrName from login_customer_info WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
     cur.execute(statement)
     
     if not cur.fetchone():  # An empty result evaluates to False.
@@ -141,7 +149,7 @@ def registration():
         #if password.isalnum() and not password.isdigit() and not password.isalpha():
         #users[name] = password Nani1234
         
-        con = sqlite3.connect(logindb)
+        con = sqlite3.connect(quote_app)
         # create cursor object
         cur = con.cursor()
         #------------------------------------------------------------------------------
@@ -152,21 +160,28 @@ def registration():
         #Check if STUDENT table exists in the database
         listOfTables = cur.execute(
         """SELECT name FROM sqlite_master WHERE type='table'
-        AND name='loginInfo'; """).fetchall()
+        AND name='login_customer_info'; """).fetchall()
         if listOfTables == []:
             #Table not found!
             #TABLE IS CREATED HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            con.execute('''CREATE TABLE loginInfo(UsrName, Pasword, yourstate, email, phone);''')
+            con.execute('''CREATE TABLE "login_customer_info" (
+                            "UsrName"	TEXT NOT NULL UNIQUE,
+                            "Pasword"	TEXT NOT NULL,
+                            "yourstate"	TEXT,
+                            "email"	TEXT,
+                            "phone"	,
+                            PRIMARY KEY("UsrName")
+                        )''')
             #------------------------------------------------------------------------------
             currentUser = name
             txtPassword = password
             currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
             #statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
-            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}';"
+            statement = f"SELECT UsrName from login_customer_info WHERE UsrName='{currentUser}';"
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
-                con.execute("insert into loginInfo values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
+                con.execute("insert into login_customer_info values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
                 con.commit()
                 con.close()
                 return redirect("/land")
@@ -179,11 +194,11 @@ def registration():
             currentUser = name
             txtPassword = password
             currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
-            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}';"
+            statement = f"SELECT UsrName from login_customer_info WHERE UsrName='{currentUser}';"
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
-                con.execute("insert into loginInfo values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
+                con.execute("insert into login_customer_info values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
                 con.commit()
                 con.close()
                 return redirect("/land")
