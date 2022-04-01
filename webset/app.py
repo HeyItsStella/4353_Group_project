@@ -1,21 +1,39 @@
 from flask import Flask, flash
 from flask import request
 from flask import render_template, session , redirect
+from flask_session import Session
 
 import os
 import os.path
 import sqlite3
 import hashlib
 
-#这么import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+currentdirectory = os.path.dirname(os.path.abspath(__file__))
+#这样import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 logindb = os.path.join(PROJECT_ROOT, 'db', 'loginInfo.db')
 
-currentdirectory = os.path.dirname(os.path.abspath(__file__))
+#Initialize the loginInfo.db database
+co = sqlite3.connect(logindb)
+c = co.cursor()
+ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='loginInfo'; """).fetchall()
+if ckTableExist == []:
+    c.execute('''CREATE TABLE loginInfo(UsrName, Pasword, yourstate, email, phone);''')
+else:
+    pass
+co.commit()
+co.close()
 
 #use "python -m flask run" for ip 127, run file for pc ip
 app = Flask(__name__, template_folder='static')
 app.secret_key = os.urandom(24)
+
+#新的session管理，如果不工作需要 pip install flask-session (不用了)
+#app.config["SESSION_PERMANENT"] = False
+#app.config["SESSION_TYPE"] = "filesystem"
+#Session(app)
+
+#有新的session管理了，这下面三行应该可以删掉，但是删了貌似JACK你的part不工作
 users = {'test': 'Abc12345'}
 profiles = {}
 histories= {}
@@ -38,6 +56,19 @@ def land():
 @app.route('/signup', methods=['GET'])
 def signup_form():
     return render_template("pages/registration.html")  #once sign up data proven valid, take user to landing page
+
+# log out Nani1234
+#session管理
+@app.route("/logout")
+def logout():
+    session['user'] = None
+    #print(session)
+    session.pop('user', None);
+    #print(session)
+    #print(app.secret_key)
+    app.secret_key = os.urandom(24)
+    #print(app.secret_key)
+    return redirect("/")
 
 # login form
 @app.route('/login', methods=['GET'])
@@ -130,7 +161,8 @@ def registration():
             currentUser = name
             txtPassword = password
             currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
-            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+            #statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}';"
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
@@ -139,7 +171,7 @@ def registration():
                 con.close()
                 return redirect("/land")
             else:
-                #print("Nah")
+                #print("Nah") Nani1234
                 flash("Account already exist, Please login!!!")
                 return redirect(request.url)
         else:
@@ -147,7 +179,7 @@ def registration():
             currentUser = name
             txtPassword = password
             currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
-            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}' AND Pasword = '{currentPassword}';"
+            statement = f"SELECT UsrName from loginInfo WHERE UsrName='{currentUser}';"
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name

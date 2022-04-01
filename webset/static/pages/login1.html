@@ -14,10 +14,18 @@
 <body>
     <a class="home" href="/" style="color: black">Home</a>
     
-    <br>
-    <br>
-    <br>
-    <br>
+    {% block content %}
+    <div class="container-msg">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+    
+        {% block page_content %}{% endblock %}
+    </div>
+    {% endblock %}
 
     <div class="container">
         <h1>"Welcome Back!" </h1>
@@ -28,33 +36,19 @@
             <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
             <!--<button type="submit" value="Login">Login</button>-->
             <input type="submit" value="Login">
-        </form>        
+        </form>
+
+        <div id="message">
+            <h3>Password must contain the following:</h3>
+            <p id="letter" class="invalid">A <b>lowercase</b>letter</p>
+            <p id="capital" class="invalid">A <b>capital (uppercase)</b>letter</p>
+            <p id="number" class="invalid">A <b>number</b></p>
+            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+        </div>
+
         <br>
         <p class="center">Does Not Have An Account? Register Now!</p>
         <input type="button" value="Register" onclick="window.location.href='/registration'" style="margin:0px auto; display:block;">
-    </div>
-
-    <div class="container-msg" id="message-con">
-        {% block content %}
-        <div class="container-msg">
-            {% for message in get_flashed_messages() %}
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ message }}
-            </div>
-            {% endfor %}
-        
-            {% block page_content %}{% endblock %}
-        </div>
-        {% endblock %}
-    </div>
-
-    <div id="message">
-        <h3>Password must contain the following:</h3>
-        <p id="letter" class="invalid">A <b>lowercase</b>letter</p>
-        <p id="capital" class="invalid">A <b>capital (uppercase)</b>letter</p>
-        <p id="number" class="invalid">A <b>number</b></p>
-        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
     </div>
 
     <script>
@@ -64,7 +58,7 @@
         var number = document.getElementById("number");
         var length = document.getElementById("length");
 
-        document.getElementById("message-con").style.display = "block";
+        //document.getElementById("message-con").style.display = "block";
 
         // When the user clicks on the password field, show the message box
         myInput.onfocus = function() {
