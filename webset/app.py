@@ -19,14 +19,14 @@ c = co.cursor()
 ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='login_customer_info'; """).fetchall()
 if ckTableExist == []:
     ###创建table的statement，需要完善+修改
-    c.execute('''CREATE TABLE "login_customer_info" (  
+    c.execute('''CREATE TABLE "login_customer_info" (
 	"UsrName"	TEXT NOT NULL UNIQUE,
 	"Pasword"	TEXT NOT NULL,
 	"yourstate"	TEXT,
 	"email"	TEXT,
 	"phone"	,
 	PRIMARY KEY("UsrName")
-)''')
+);''')
 else:
     pass
 co.commit()
