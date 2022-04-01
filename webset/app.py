@@ -2,6 +2,7 @@ from flask import Flask, flash
 from flask import request
 from flask import render_template, session , redirect
 from flask_session import Session
+from datetime import datetime
 
 import os
 import os.path
@@ -20,13 +21,15 @@ ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND
 if ckTableExist == []:
     ###创建table的statement，需要完善+修改
     c.execute('''CREATE TABLE "login_customer_info" (
-	"UsrName"	TEXT NOT NULL UNIQUE,
-	"Pasword"	TEXT NOT NULL,
-	"yourstate"	TEXT,
-	"email"	TEXT,
-	"phone"	,
+	"UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
+	"Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
+	"address1"	TEXT CHECK(length(address1)<=100) COLLATE NOCASE,
+	"address2"	TEXT CHECK(length(address2)<=100) COLLATE NOCASE,
+	"City"	TEXT CHECK(length(City)<=100) COLLATE NOCASE,
+	"State"	TEXT CHECK(length(State)=2) COLLATE NOCASE,
+	"zip_code"	TEXT CHECK(length(zip_code)<=9),
 	PRIMARY KEY("UsrName")
-);''')
+    )''')
 else:
     pass
 co.commit()
@@ -165,13 +168,15 @@ def registration():
             #Table not found!
             #TABLE IS CREATED HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             con.execute('''CREATE TABLE "login_customer_info" (
-                            "UsrName"	TEXT NOT NULL UNIQUE,
-                            "Pasword"	TEXT NOT NULL,
-                            "yourstate"	TEXT,
-                            "email"	TEXT,
-                            "phone"	,
-                            PRIMARY KEY("UsrName")
-                        )''')
+                        "UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
+                        "Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
+                        "address1"	TEXT CHECK(length(address1)<=100) COLLATE NOCASE,
+                        "address2"	TEXT CHECK(length(address2)<=100) COLLATE NOCASE,
+                        "City"	TEXT CHECK(length(City)<=100) COLLATE NOCASE,
+                        "State"	TEXT CHECK(length(State)=2) COLLATE NOCASE,
+                        "zip_code"	TEXT CHECK(length(zip_code)<=9),
+                        PRIMARY KEY("UsrName")
+                    )''')
             #------------------------------------------------------------------------------
             currentUser = name
             txtPassword = password
@@ -279,6 +284,7 @@ def process_quote():
     return redirect('/quote_history')
 
 
+##need to install datetime module
 @app.route('/quote_history', methods=['GET'])
 def quote_history():
     if not 'user' in session:
