@@ -8,6 +8,7 @@ import os.path
 import sqlite3
 import hashlib
 
+currentdirectory = os.path.dirname(os.path.abspath(__file__))
 #这样import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 logindb = os.path.join(PROJECT_ROOT, 'db', 'loginInfo.db')
@@ -23,8 +24,6 @@ else:
 co.commit()
 co.close()
 
-currentdirectory = os.path.dirname(os.path.abspath(__file__))
-
 #use "python -m flask run" for ip 127, run file for pc ip
 app = Flask(__name__, template_folder='static')
 app.secret_key = os.urandom(24)
@@ -34,7 +33,7 @@ app.secret_key = os.urandom(24)
 #app.config["SESSION_TYPE"] = "filesystem"
 #Session(app)
 
-
+#有新的session管理了，这下面三行应该可以删掉，但是删了貌似JACK你的part不工作
 users = {'test': 'Abc12345'}
 profiles = {}
 histories= {}
@@ -57,12 +56,16 @@ def signup_form():
     return render_template("pages/registration.html")
 
 # log out Nani1234
+#session管理
 @app.route("/logout")
 def logout():
     session['user'] = None
     #print(session)
     session.pop('user', None);
     #print(session)
+    #print(app.secret_key)
+    app.secret_key = os.urandom(24)
+    #print(app.secret_key)
     return redirect("/")
 
 # login form
