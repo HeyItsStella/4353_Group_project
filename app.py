@@ -50,7 +50,6 @@ histories= {}
 def home():
     return render_template('index.html')
 
-
 # landing page
 @app.route('/land', methods=['GET', 'POST'])
 def land():
@@ -58,6 +57,7 @@ def land():
         return redirect('/login')
     return render_template('pages/landingPage.html')
 
+#Login, Logout, Sign in, and register done by Evan----------------------------------------------------
 #session管理 /log out Nani1234 Evan1234
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -115,6 +115,7 @@ def registration():
             return redirect(request.url)
     return render_template("pages/registration.html")
 
+#User Profile management done by Jack---------------------------------------------------------------------------------
 # manage user profile
 @app.route('/profile', methods=['GET'])
 def profile_page():
@@ -161,6 +162,7 @@ def update_profile():
     #profiles[session['user']] = profile
     #return redirect("/land")
 
+#Quote management done by Stella---------------------------------------------------------------------------------
 # manage  quote
 @app.route('/quote', methods=['GET'])
 def quote_page():
