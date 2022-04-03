@@ -56,12 +56,6 @@ class AppTestCase(unittest.TestCase):
         password = "Abc12345"
         response = self.client.post("/login", data={"username": username, 'psw': password})
         assert response.status_code == 302
-    
-    def test_login3(self):
-        username = "test"
-        password = "Abc123456"
-        response = self.client.post("/login", data={"username": username, 'psw': password})
-        assert response.status_code == 302
 
     def test_login3(self):
         username = "ADMIN"
