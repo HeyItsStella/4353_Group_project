@@ -20,6 +20,7 @@ c = co.cursor()
 ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='login_customer_info'; """).fetchall()
 if ckTableExist == []:
     ###创建table的statement，需要完善+修改
+    """
     c.execute('''CREATE TABLE "login_customer_info" (
 	"UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
 	"Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
@@ -29,7 +30,8 @@ if ckTableExist == []:
 	"stateName"	TEXT CHECK(length(stateName)=2) COLLATE NOCASE,
 	"zip_code"	TEXT CHECK(length(zip_code)<=9),
 	PRIMARY KEY("UsrName")
-    )''')
+    )''') 
+    """
 else:
     pass
 co.commit()
@@ -163,10 +165,13 @@ def registration():
         #Check if STUDENT table exists in the database
         listOfTables = cur.execute(
         """SELECT name FROM sqlite_master WHERE type='table'
-        AND name='login_customer_info'; """).fetchall()
+        AND name='login_customer_info'; """).fetchall() 
+        
+        """
         if listOfTables == []:
             #Table not found!
             #TABLE IS CREATED HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
             con.execute('''CREATE TABLE "login_customer_info" (
                         "UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
                         "Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
@@ -196,22 +201,24 @@ def registration():
                 flash("Account already exist, Please login!!!")
                 return redirect(request.url)
         else:
+        """
             #Table found!
-            currentUser = name
-            txtPassword = password
-            currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
-            statement = f"SELECT UsrName from login_customer_info WHERE UsrName='{currentUser}';"
-            cur.execute(statement)
-            if not cur.fetchone():  # An empty result evaluates to False.
-                session['user'] = name
-                con.execute("insert into login_customer_info(UsrName,Pasword) values (?,?)", (currentUser, currentPassword))
-                con.commit()
-                con.close()
-                return redirect("/land")
-            else:
-                #print("Nah")
-                flash("Account already exist, Please login!!!")
-                return redirect(request.url)
+            #Table will be created in advance
+        currentUser = name
+        txtPassword = password
+        currentPassword = hashlib.sha256(str(txtPassword).encode('utf-8')).hexdigest()
+        statement = f"SELECT UsrName from login_customer_info WHERE UsrName='{currentUser}';"
+        cur.execute(statement)
+        if not cur.fetchone():  # An empty result evaluates to False.
+            session['user'] = name
+            con.execute("insert into login_customer_info(UsrName,Pasword) values (?,?)", (currentUser, currentPassword))
+            con.commit()
+            con.close()
+            return redirect("/land")
+        else:
+            #print("Nah")
+            flash("Account already exist, Please login!!!")
+            return redirect(request.url)
         #return redirect('/land')
         #else:
             #return "password must include a capital letter and a number"
@@ -322,7 +329,7 @@ def quote_history():
     con.row_factory = sqlite3.Row
     # create cursor object
     cur = con.cursor()
-    statement =f"select num_gallon, address, delivery_date, price_pergal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName and q.UsrName='{user}';"
+    statement =f"select num_gallon, address, date(delivery_date), price_pergal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName and q.UsrName='{user}';"
     cur.execute(statement)
     
     ###for user in quote_app("select num_gallon, address, delivery_date, price_pergal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName;"):
