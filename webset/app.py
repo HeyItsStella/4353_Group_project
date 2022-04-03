@@ -26,7 +26,7 @@ if ckTableExist == []:
 	"address1"	TEXT CHECK(length(address1)<=100) COLLATE NOCASE,
 	"address2"	TEXT CHECK(length(address2)<=100) COLLATE NOCASE,
 	"City"	TEXT CHECK(length(City)<=100) COLLATE NOCASE,
-	"State"	TEXT CHECK(length(State)=2) COLLATE NOCASE,
+	"stateName"	TEXT CHECK(length(stateName)=2) COLLATE NOCASE,
 	"zip_code"	TEXT CHECK(length(zip_code)<=9),
 	PRIMARY KEY("UsrName")
     )''')
@@ -173,10 +173,11 @@ def registration():
                         "address1"	TEXT CHECK(length(address1)<=100) COLLATE NOCASE,
                         "address2"	TEXT CHECK(length(address2)<=100) COLLATE NOCASE,
                         "City"	TEXT CHECK(length(City)<=100) COLLATE NOCASE,
-                        "State"	TEXT CHECK(length(State)=2) COLLATE NOCASE,
+                        "stateName"	TEXT CHECK(length(stateName)=2) COLLATE NOCASE,
                         "zip_code"	TEXT CHECK(length(zip_code)<=9),
                         PRIMARY KEY("UsrName")
                     )''')
+            con.commit()
             #------------------------------------------------------------------------------
             currentUser = name
             txtPassword = password
@@ -191,7 +192,7 @@ def registration():
                 con.close()
                 return redirect("/land")
             else:
-                #print("Nah") Nani1234
+                #print("Nah") ADMIN Nani1234
                 flash("Account already exist, Please login!!!")
                 return redirect(request.url)
         else:
