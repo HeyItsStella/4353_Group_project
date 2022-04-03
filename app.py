@@ -225,4 +225,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run()
+if __name__ == '__main__': app.run(host='0.0.0.0',port=5000)
