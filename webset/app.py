@@ -186,7 +186,7 @@ def registration():
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
-                con.execute("insert into login_customer_info values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
+                con.execute("insert into login_customer_info(UsrName,Pasword) values (?,?)", (currentUser, currentPassword))
                 con.commit()
                 con.close()
                 return redirect("/land")
@@ -203,7 +203,7 @@ def registration():
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 session['user'] = name
-                con.execute("insert into login_customer_info values (?,?,?,?,?)", (currentUser, currentPassword,str(GETITLATER),str(GETITLATER),str(GETITLATER)))
+                con.execute("insert into login_customer_info(UsrName,Pasword) values (?,?)", (currentUser, currentPassword))
                 con.commit()
                 con.close()
                 return redirect("/land")
