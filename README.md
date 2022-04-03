@@ -15,7 +15,7 @@ Instructions to run locally
 
 Instruction on code coverage
 
-Run commond interminal below
+Run commond in terminal below
 
 coverage run test_app.py
 coverage report -m
