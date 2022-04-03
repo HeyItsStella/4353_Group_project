@@ -19,10 +19,8 @@ co = sqlite3.connect(quote_app)
 c = co.cursor()
 ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='login_customer_info'; """).fetchall()
 
-"""
 if ckTableExist == []:
     ###创建table的statement，需要完善+修改
-    
     c.execute('''CREATE TABLE "login_customer_info" (
 	"UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
 	"Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
@@ -33,10 +31,8 @@ if ckTableExist == []:
 	"zip_code"	TEXT CHECK(length(zip_code)<=9),
 	PRIMARY KEY("UsrName")
     )''') 
-    
 else:
     pass
-"""
 co.commit()
 co.close()
 
