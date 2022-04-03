@@ -7,7 +7,16 @@ _____________________________________________
 
 instructions to run locally
 
-1. first run "app.py" file
-2. open the provided link on browser
+1. Install the requirments
+2. first run "app.py" file
+3. open the provided link on terminal
+
+Instruction on code coverage
+
+Run commond interminal below
+
+coverage run test_app.py
+coverage report -m
+coverage html
 
 —————————————————————————————————————————————
