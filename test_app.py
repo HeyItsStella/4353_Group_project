@@ -22,7 +22,7 @@ class AppTestCase(unittest.TestCase):
         assert "<title>QuotEZ</title>" in response.get_data(as_text=True)
         
     def test_signup(self):
-        response = self.client.get("/signup")
+        response = self.client.get("/registration")
         assert response.status_code == 200
         assert "<title>Registration</title>" in response.get_data(as_text=True)
         
@@ -35,7 +35,13 @@ class AppTestCase(unittest.TestCase):
     def test_signup3(self):
         username = "1234"
         password = "Abc12345"
-        response = self.client.post("/registration", data={"name": username, "password": password, "password_confirm": password})
+        response = self.client.post("/registration", data={"username": username, "password": password, "password_confirm": password})
+        assert response.status_code == 400
+        
+    def test_signup4(self):
+        username = ""
+        password = ""
+        response = self.client.post("/registration", data={"username": username, "password": password, "password_confirm": password})
         assert response.status_code == 400
     
     def test_login(self):
