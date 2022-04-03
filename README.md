@@ -5,11 +5,13 @@ By Stella, Jack, and Evan in Group 8
 
 _____________________________________________
 
-instructions to run locally
+Instructions to run locally
 
 1. Install the requirments
 2. first run "app.py" file
 3. open the provided link on terminal
+
+
 
 Instruction on code coverage
 
