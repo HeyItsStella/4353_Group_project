@@ -108,7 +108,8 @@ class AppTestCase(unittest.TestCase):
         response = self.client.post("/profile", data=profile)
         assert response.status_code == 302
         
-    
+        
+
     def test_quote(self):
         response = self.client.get("/quote")
         assert response.status_code == 302
