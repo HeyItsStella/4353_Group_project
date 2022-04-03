@@ -225,11 +225,25 @@ def registration():
 def profile_page():
     if not 'user' in session:
         return redirect('/login')
-    profile = {'username': '', 'address1': '', 'address2': '', 'city': '', 'zipcode': '', 'state': ''}
-    if session['user'] in profiles:
-        profile = profiles[session['user']]
-        
+
+    username =  session['user']
+    con = sqlite3.connect(quote_app)
+    cur=con.cursor()
+    statement = f"SELECT * from login_customer_info where UsrName='{username}';"
+    cur.execute(statement)
+    data=cur.fetchone()
+    profile = {'username': data[0], 'address1': data[2], 'address2':  data[3], 'city': data[4], 'zipcode': data[6], 'state': data[5]}
+      
+    #if session['user'] in profiles:
+    #    profile = profiles[session['user']]
+    
     return render_template("pages/profile.html", profile=profile)
+
+
+
+#
+#-------------------------------------------分割线
+#
 
 
 # process profile form
@@ -247,11 +261,17 @@ def update_profile():
     
     if not 'user' in session:
         return redirect('/login')
-    profile = {'username': name, 'address1': address1, 'address2': address2, 'city': city, 'zipcode': zipcode, 'state': state}
-    
-    profiles[session['user']] = profile
+    con = sqlite3.connect(quote_app)
+    cur=con.cursor()
+    statement = f"UPDATE login_customer_info SET address1='{address1}', address2='{address2}', City='{city}', State='{state}', zip_code='{zipcode}' WHERE UsrName='{name}';"
+    cur.execute(statement)
+    con.commit()
+    session['user'] = name
     
     return redirect("/land")
+    #profile = {'username': name, 'address1': address1, 'address2': address2, 'city': city, 'zipcode': zipcode, 'state': state}
+    #profiles[session['user']] = profile
+    #return redirect("/land")
 
 # manage  quote
 @app.route('/quote', methods=['GET'])
