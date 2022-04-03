@@ -54,17 +54,15 @@ def home():
 # landing page
 @app.route('/land', methods=['GET', 'POST'])
 def land():
-    if not 'user' in session:
+    if not 'user' in session: 
         return redirect('/login')
     return render_template('pages/landingPage.html')
 
 #session管理 /log out Nani1234 Evan1234
-@app.route("/logout")
+@app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    session['user'] = None
-    session.pop('user', None);
-    app.secret_key = os.urandom(24)
-    return redirect("/")
+    session.pop('user');
+    return render_template('index.html')
 
 # login form
 @app.route('/login', methods=['GET'])
@@ -76,14 +74,6 @@ def login_form():
 def login():
     name = request.form['username']
     password = request.form['psw']
-        
-    if len(name) == 0:
-        flash("Please enter a username!")
-        return redirect(request.url)
-    
-    if len(password) == 0:
-        flash("Please enter a password!")
-        return redirect(request.url)
     
     conn = sqlite3.connect(quote_app)
     cur = conn.cursor()
@@ -229,5 +219,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == '__main__': app.run()

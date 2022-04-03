@@ -27,22 +27,22 @@ class AppTestCase(unittest.TestCase):
         assert "<title>Registration</title>" in response.get_data(as_text=True)
         
     def test_signup2(self):
-        username = "1234"
-        password = "Abc12345"
-        response = self.client.post("/registration", data={"username": username, "password": password, "password_confirm": password})
-        assert response.status_code == 400
+        username = "whatthis"
+        password = "What1234"
+        response = self.client.post("/registration", data={"usrname": username, "psw": password, "psw-con": password})
+        assert response.status_code == 302
     
     def test_signup3(self):
-        username = "1234"
-        password = "Abc12345"
-        response = self.client.post("/registration", data={"username": username, "password": password, "password_confirm": password})
-        assert response.status_code == 400
+        username = "ADMIN"
+        password = "Nani1234"
+        response = self.client.post("/registration", data={"usrname": username, "psw": password, "psw-con": password})
+        assert response.status_code == 302
         
     def test_signup4(self):
         username = ""
         password = ""
-        response = self.client.post("/registration", data={"username": username, "password": password, "Confirm Password": password})
-        assert response.status_code == 400
+        response = self.client.post("/registration", data={"usrname": username, "psw": password, "psw-con": password})
+        assert response.status_code == 302
     
     def test_login(self):
         username = "123459"
@@ -62,6 +62,28 @@ class AppTestCase(unittest.TestCase):
         password = "Abc123456"
         response = self.client.post("/login", data={"username": username, 'psw': password})
         assert response.status_code == 302
+
+    def test_login3(self):
+        username = "ADMIN"
+        password = "Nani1234"
+        response = self.client.post("/login", data={"username": username, 'psw': password})
+        assert response.status_code == 302
+        
+    def test_land(self):
+        response = self.client.post("/land")
+        assert response.status_code == 302
+        
+    def test_land2(self):
+        response = self.client.get("/land")
+        assert response.status_code == 200
+        
+    def test_logout(self):
+        response = self.client.post("/logout")
+        assert response.status_code == 302
+        
+    def test_logout2(self):
+        response = self.client.get("/logout")
+        assert response.status_code == 200
         
     def test_profile(self):
         response = self.client.get("/profile")
