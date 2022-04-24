@@ -181,6 +181,15 @@ def update_profile():
 
 #Quote management done by Stella---------------------------------------------------------------------------------
 # manage  quote
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#test price modeule evan我写的在这里
+#使用这个方式传入数据，class名字是Price
+#testcase1 = Price(1500, True, True)
+#testcase1.show()
+#testcase1.getSuggested()
+#print(testcase1.totalDue())
+
 @app.route('/quote', methods=['GET'])
 def quote_page():
     if not 'user' in session:
