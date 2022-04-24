@@ -4,8 +4,6 @@ from flask import render_template, session , redirect
 from flask_session import Session
 from datetime import datetime
 
-from sqlalchemy import false
-
 import project_price
 from project_price import *
 
