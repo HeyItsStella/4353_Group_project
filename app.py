@@ -21,7 +21,6 @@ import hashlib
 #print(testcase1.totalDue())
 
 
-
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
 #这样import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
