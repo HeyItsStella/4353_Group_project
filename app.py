@@ -185,6 +185,7 @@ def update_profile():
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #test price modeule evan我写的在这里
 #使用这个方式传入数据，class名字是Price
+#需要数据的时候就用这个
 #testcase1 = Price(1500, True, True)
 #testcase1.show()
 #testcase1.getSuggested()
@@ -246,4 +247,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=True)
+if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=False)
