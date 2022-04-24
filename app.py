@@ -4,6 +4,8 @@ from flask import render_template, session , redirect
 from flask_session import Session
 from datetime import datetime
 
+from project_price import *
+
 import os
 import os.path
 import sqlite3
