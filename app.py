@@ -4,14 +4,20 @@ from flask import render_template, session , redirect
 from flask_session import Session
 from datetime import datetime
 
+from sqlalchemy import false
+
 import project_price
+from project_price import *
 
 import os
 import os.path
 import sqlite3
 import hashlib
 
-#project_price.printevan()
+#test price modeule
+testcase1 = Price(420, True, False)
+testcase1.show()
+
 
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
 #这样import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
