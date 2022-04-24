@@ -12,9 +12,13 @@ import os.path
 import sqlite3
 import hashlib
 
-#test price modeule
-testcase1 = Price(420, True, False)
-testcase1.show()
+#test price modeule evan写的在这里
+#使用这个方式传入数据，class名字是Price
+testcase1 = Price(1500, True, True)
+#testcase1.show()
+#testcase1.getSuggested()
+print(testcase1.totalDue())
+
 
 
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
