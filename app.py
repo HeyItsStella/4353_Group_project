@@ -195,12 +195,14 @@ def update_profile():
 def quote_page():
     if not 'user' in session:
         return redirect('/login')
-    
+    username = session['user']
     address = ''
-    if session['user'] in profiles:
-        address = profiles[session['user']]['address1'] + profiles[session['user']]['address2']
-        
-    return render_template("pages/quote_form.html", address=address)
+    con = sqlite3.connect(quote_app)
+    cur = con.cursor()
+    statement = f"SELECT * from login_customer_info where UsrName='{username}';"
+    cur.execute(statement)
+    data=cur.fetchone()
+    return render_template("pages/quote_form.html", address=data[2] + " " + data[3])
 
 
 # manage  quote
@@ -211,14 +213,19 @@ def process_quote():
     
     number = request.form['number']
     date = request.form['date']
-    address = request.form['address']
+    address = request.form['address']  
     
     user = session['user']
-    if user in histories:
-        histories[user].append((number, address, date))
-    else:
-        histories[user] = [(number, address, date)]
-        
+    #if user in histories:
+    #    histories[user].append((number, address, date))#注意修改这里！！！！！
+    #else:
+    #    histories[user] = [(number, address, date)]
+
+    con = sqlite3.connect(quote_app)
+    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,'60'))
+    con.commit()
+    con.close()
+    
     return redirect('/quote_history')
 
 
@@ -247,4 +254,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=False)
+if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=True)
