@@ -14,6 +14,7 @@ import hashlib
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #test price modeule evan写的在这里
+#下一步只需要在html里用就可以了
 #使用这个方式传入数据，class名字是Price
 #testcase1 = Price(1500, True, True)
 #testcase1.show()
