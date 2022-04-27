@@ -7,7 +7,7 @@ _____________________________________________
 
 Instructions to run locally
 
-1. Install the requirments
+1. Install the requirments using pip install -r requirements.txt
 2. first run "app.py" file
 3. open the provided link on terminal
 
