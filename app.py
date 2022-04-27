@@ -4,10 +4,21 @@ from flask import render_template, session , redirect
 from flask_session import Session
 from datetime import datetime
 
+import project_price
+from project_price import *
+
 import os
 import os.path
 import sqlite3
 import hashlib
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#test price modeule evan写的在这里
+#使用这个方式传入数据，class名字是Price
+#testcase1 = Price(1500, True, True)
+#testcase1.show()
+#testcase1.getSuggested()
+#print(testcase1.totalDue())
 
 currentdirectory = os.path.dirname(os.path.abspath(__file__))
 #这样import文件夹下的db !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -169,6 +180,16 @@ def update_profile():
 
 #Quote management done by Stella---------------------------------------------------------------------------------
 # manage  quote
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#test price modeule evan我写的在这里
+#使用这个方式传入数据，class名字是Price
+#需要数据的时候就用这个
+#testcase1 = Price(1500, True, True)
+#testcase1.show()
+#testcase1.getSuggested()
+#print(testcase1.totalDue())
+
 @app.route('/quote', methods=['GET'])
 def quote_page():
     if not 'user' in session:
@@ -225,4 +246,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=True)
+if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=False)
