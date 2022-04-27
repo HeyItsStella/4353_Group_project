@@ -30,7 +30,12 @@
                     <label class="info" for="num-gallons">Number of Gallons:</label> <br>
                     <input class="info-input" type="number" id="num-gallons" name="number" required min="0" maxlength="8" size="20"> <br>
                     <label class="info" for="address">Delivery Address:</label><br>
-                    <input class="info-input" type="text" id="address" name="address" value="{{address}}" size="20" placeholder="Auto Filled"><br>
+                    <input class="info-input" type="text" id="address" name="address" value="{{address}}" size="20" hidden="hidden">
+                    <script>
+                        var a='{{address}}';
+                        document.write("<span style='font-size:25px'>"+ a + "</span>");
+                    </script>
+                    <br><br>
                     <!--need link to address of client profile---->
                     <label class="info" for="date">Delivery Date:</label><br>
                     <input class="info-input" type="date" id="date" name="date" required><br>
