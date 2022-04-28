@@ -9,7 +9,8 @@ Flask-MySQLdb
 Flask-Session                
 Flask-SQLAlchemy             
 flatbuffers                  
-Jinja2                       
+Jinja2
+matplotlib                       
 mongoose                     
 mypy-extensions              
 mysql-connector-python       
