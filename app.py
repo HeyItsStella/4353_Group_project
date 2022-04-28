@@ -15,7 +15,6 @@ import hashlib
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #test price modeule evan写的在这里
-#下一步只需要在html里用就可以了
 #使用这个方式传入数据，class名字是Price
 #testcase1 = Price(1500, True, True)
 #testcase1.show()
@@ -46,6 +45,7 @@ if ckTableExist == []:
     )''') 
 else:
     pass
+
 co.commit()
 co.close()
 
@@ -75,7 +75,7 @@ def land():
 #session管理 /log out Nani1234 Evan1234
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    session.pop('user')
+    session.pop('user');
     return render_template('index.html')
 
 # login form
@@ -205,8 +205,7 @@ def quote_page():
     data=cur.fetchone()
     return render_template("pages/quote_form.html", address=data[2] + " " + data[3])
 
-
-# manage  quote
+# manage quote
 @app.route('/quote', methods=['POST'])
 def process_quote():
     if not 'user' in session:
@@ -214,19 +213,19 @@ def process_quote():
     
     number = request.form['number']
     date = request.form['date']
-    address = request.form['address']  
+    address = request.form['address']
     
     user = session['user']
     #if user in histories:
-    #    histories[user].append((number, address, date))#注意修改这里！！！！！
+    #    histories[user].append((number, address, date))
     #else:
     #    histories[user] = [(number, address, date)]
-
+        
     con = sqlite3.connect(quote_app)
     con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,'60'))
     con.commit()
     con.close()
-    
+        
     return redirect('/quote_history')
 
 
@@ -255,4 +254,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=True)
+if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=False)

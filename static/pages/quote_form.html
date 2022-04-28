@@ -7,6 +7,11 @@
     <link rel="icon" href="{{ url_for('static', filename='img/temp_logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='cssFiles/style.css') }}">
     <meta name="viewport" content="width=device-width, intial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        
+    </script>
+    
 </head>
 
 <body>
@@ -46,7 +51,7 @@
                     <label class="info" for="total">Total Amount:</label><br>
                     <input class="info-input" type="text" id="total" name="total" size="20" readonly><br>
 
-                    <input class="calc-button" type="submit" name="get_quote" id="get_quote" value="Get Quote"><br>
+                    <input class="calc-button" type="button" onclick="get_suggest();" name="get_quote" id="get_quote" value="Get Quote"><br>
                     <input class="calc-button" type="submit" name="submit" id="submit" value="Submit"><br>
 
 

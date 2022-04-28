@@ -1,11 +1,6 @@
 from matplotlib.pyplot import get
 
 class Price:
-    current_price = 1.5
-    location_factor = 1.0
-    rate_history_factor = 1.0
-    gallon_request_factor = 1.0
-    company_profit_factor = 1.0
 
     #by evan
     #inState, reqb4 are all boolean
