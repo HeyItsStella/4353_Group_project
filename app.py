@@ -202,8 +202,22 @@ def quote_page():
     cur = con.cursor()
     statement = f"SELECT * from login_customer_info where UsrName='{username}';"
     cur.execute(statement)
-    data=cur.fetchone()
-    return render_template("pages/quote_form.html", address=data[2] + " " + data[3])
+    data_login=cur.fetchone()
+    
+
+    if data_login[5] == "TX":
+        inout = True
+    else:
+        inout = False
+
+    statement = f"SELECT * from quote_history where UsrName='{username}';"
+    cur.execute(statement)
+    if not cur.fetchone():
+        requestb4 = False
+    else:
+        requestb4 = True
+    return render_template("pages/quote_form.html", address=data_login[2] + " " + data_login[3] + " " + data_login[4] + " " + data_login[5] + " " +  data_login[6], inoutstate=inout,reqb4=requestb4)
+
 
 # manage quote
 @app.route('/quote', methods=['POST'])
@@ -222,7 +236,14 @@ def process_quote():
     #    histories[user] = [(number, address, date)]
         
     con = sqlite3.connect(quote_app)
-    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,'60'))
+
+    inputData = Price(number, True, True)
+    #inputData.show()
+    inputData.getSuggested()
+    inputData.totalDue()
+    #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price哪里改
+
+    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal,final_price) values (?,?,?,?,?);", (user,date,address,number,'60'))
     con.commit()
     con.close()
         
