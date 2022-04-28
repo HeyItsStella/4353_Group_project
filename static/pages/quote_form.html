@@ -7,8 +7,8 @@
     <link rel="icon" href="{{ url_for('static', filename='img/temp_logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='cssFiles/style.css') }}">
     <meta name="viewport" content="width=device-width, intial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
-    <script src="{{ url_for('static',filename='suggested.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   <!--import jquery--> 
+    <script src="{{ url_for('static',filename='suggested.js') }}"></script> <!--import javascript file-->
     
 </head>
 
@@ -30,7 +30,7 @@
             <h2>Fuel Quote Form</h2>
             <div class="center-form">
                 <!--form action="/quote" method="post" change back-->
-                <form>
+                <form action="/quote" method="post">
                     <label class="info" for="num-gallons">Number of Gallons:</label> <br>
                     <input class="info-input" type="number" id="num-gallons" name="number" required min="0" maxlength="8" size="20"> <br>
                     <label class="info" for="address">Delivery Address:</label><br>

@@ -189,7 +189,10 @@ def update_profile():
 #testcase1.show()
 #testcase1.getSuggested()
 #print(testcase1.totalDue())
-@app.route('/process_suggest', methods=['POST','GET'])
+
+
+#process suggest price module
+@app.route('/process_suggest', methods=['POST','GET']) 
 def process_suggest_price():
     if request.method=="POST":
         suggest_data=request.get_json()
