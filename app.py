@@ -11,9 +11,9 @@ import sqlite3
 import hashlib
 
 
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #test price modeule evan写的在这里
-#使用这个方式传入数据，class名字是Price
+#使用这个方式传入数据,class名字是Price
 #testcase1 = Price(1500, True, True)
 #testcase1.show()
 #testcase1.getSuggested()
@@ -214,7 +214,10 @@ def quote_page():
     cur.execute(statement)
     data_login=cur.fetchone()
     
-
+    x = str(data_login[5])
+    if len(x) != 2:
+        return redirect('/profile')
+    
     if data_login[5] == "TX":
         inout = True
     else:

@@ -33,7 +33,8 @@
 
             <label for="lang"> State: <span>{{profile.state}} selected</span> </label>
             <select name="state" id="lang">
-                <option value="none" selected disabled hidden>Select an Option</option>
+            <!--    <option value="none" selected disabled hidden>Select an Option</option>    -->
+            <option value={{profile.state}}>  </option>
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
                 <option value="AZ">AZ</option>
