@@ -1,6 +1,4 @@
-from flask import Flask, flash
-from flask import request
-from flask import render_template, session , redirect
+from flask import Flask, flash, request, render_template, session , redirect, jsonify
 from flask_session import Session
 from datetime import datetime
 
@@ -191,7 +189,16 @@ def update_profile():
 #testcase1.show()
 #testcase1.getSuggested()
 #print(testcase1.totalDue())
+@app.route('/process_suggest', methods=['POST','GET'])
+def process_suggest_price():
+    if request.method=="POST":
+        suggest_data=request.get_json()
+        print(suggest_data)
+        
+    results ={'processed': 'true'}
+    return jsonify(results)
 
+    
 @app.route('/quote', methods=['GET'])
 def quote_page():
     if not 'user' in session:
@@ -241,7 +248,7 @@ def process_quote():
     #inputData.show()
     inputData.getSuggested()
     inputData.totalDue()
-    #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price哪里改
+    #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price里改
 
     con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal,final_price) values (?,?,?,?,?);", (user,date,address,number,'60'))
     con.commit()
@@ -275,4 +282,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=False)
+if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=True)

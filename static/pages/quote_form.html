@@ -7,10 +7,8 @@
     <link rel="icon" href="{{ url_for('static', filename='img/temp_logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='cssFiles/style.css') }}">
     <meta name="viewport" content="width=device-width, intial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
-        
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <script src="{{ url_for('static',filename='suggested.js') }}"></script>
     
 </head>
 
@@ -31,7 +29,8 @@
         <div class="quote-form-box-1">
             <h2>Fuel Quote Form</h2>
             <div class="center-form">
-                <form action="/quote" method="post">
+                <!--form action="/quote" method="post" change back-->
+                <form>
                     <label class="info" for="num-gallons">Number of Gallons:</label> <br>
                     <input class="info-input" type="number" id="num-gallons" name="number" required min="0" maxlength="8" size="20"> <br>
                     <label class="info" for="address">Delivery Address:</label><br>
@@ -39,6 +38,9 @@
                     <input class="info-input" type="text" id="inoutstate" name="inoutstate" value="{{inoutstate}}"  hidden="hidden">
                     <input class="info-input" type="text" id="reqb4" name="reqb4" value="{{reqb4}}"  hidden="hidden">
                     <!--以上三行作用为在app.py里调用数据库把信息展示到网站页面上并隐藏起来，方便接下来使用request.form()直接找出-->
+
+                    
+                    <!---用javascript写到id=address上--->
                     <script>
                         var a='{{address}}';
                         document.write("<span style='font-size:25px'>"+ a + "</span>");
@@ -48,11 +50,19 @@
                     <label class="info" for="date">Delivery Date:</label><br>
                     <input class="info-input" type="date" id="date" name="date" required><br>
 
-                    <label class="info" for="price">Suggested Price:</label><br>
-                    <input class="info-input" type="text" id="price" name="price" size="20" readonly><br>
+                    <!--label class="info" for="price">Suggested Price:</label><br-->
+                    <!--input class="info-input" type="text" id="price" name="price" size="20" readonly><br-->
+                    <label class="info">Suggested Price:</label>
+                    <div class="info-input">
+                        <span id="price"></span>
+                    </div><br>
 
-                    <label class="info" for="total">Total Amount:</label><br>
-                    <input class="info-input" type="text" id="total" name="total" size="20" readonly><br>
+                    <label class="info">Total Amount:</label>
+                    <div class="info-input">
+                        <span id="total"></span>
+                    </div>
+                    <!--label class="info" for="total">Total Amount:</label><br-->
+                    <!--input class="info-input" type="text" id="total" name="total" size="20" readonly><br-->
 
                     <input class="calc-button" type="button" onclick="get_suggest();" name="get_quote" id="get_quote" value="Get Quote"><br>
                     <input class="calc-button" type="submit" name="submit" id="submit" value="Submit"><br>
@@ -60,6 +70,7 @@
 
                     <!---- <label>Suggested Price / Gallon</label>  --- may need to add suggested price/gallon--->
                 </form>
+                    <!--/form change back-->
             </div>
         </div>
     </div>
