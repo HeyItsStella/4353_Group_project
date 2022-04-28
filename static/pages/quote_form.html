@@ -31,6 +31,9 @@
                     <input class="info-input" type="number" id="num-gallons" name="number" required min="0" maxlength="8" size="20"> <br>
                     <label class="info" for="address">Delivery Address:</label><br>
                     <input class="info-input" type="text" id="address" name="address" value="{{address}}" size="20" hidden="hidden">
+                    <input class="info-input" type="text" id="inoutstate" name="inoutstate" value="{{inoutstate}}"  hidden="hidden">
+                    <input class="info-input" type="text" id="reqb4" name="reqb4" value="{{reqb4}}"  hidden="hidden">
+                    <!--以上三行作用为在app.py里调用数据库把信息展示到网站页面上并隐藏起来，方便接下来使用request.form()直接找出-->
                     <script>
                         var a='{{address}}';
                         document.write("<span style='font-size:25px'>"+ a + "</span>");
