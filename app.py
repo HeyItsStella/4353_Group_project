@@ -223,7 +223,14 @@ def process_quote():
     #    histories[user] = [(number, address, date)]
 
     con = sqlite3.connect(quote_app)
-    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,'60'))
+
+    inputData = Price(number, True, True)
+    #inputData.show()
+    inputData.getSuggested()
+    inputData.totalDue()
+    #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price哪里改
+
+    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal,final_price) values (?,?,?,?,?);", (user,date,address,number,'60'))
     con.commit()
     con.close()
     
