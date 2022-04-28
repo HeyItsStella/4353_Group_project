@@ -214,7 +214,10 @@ def quote_page():
     cur.execute(statement)
     data_login=cur.fetchone()
     
-
+    x = str(data_login[5])
+    if len(x) != 2:
+        return redirect('/profile')
+    
     if data_login[5] == "TX":
         inout = True
     else:
