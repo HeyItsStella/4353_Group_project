@@ -17,7 +17,8 @@ function get_suggest()
 
     if(amount=='' || date2=='' ){
         window.alert("Please enter amount and delivery date");
-        return}
+        return;
+    }
 
     else {
         
@@ -38,34 +39,34 @@ function get_suggest()
         //else
         //  finalNum = 100000;
         
-    // return finalNum;
+        // return finalNum;
 
-    getsug=1.5+finalNum;
-    payme=getsug*amount;
-    sum=parseFloat(payme).toFixed(2);//fix decimal to 2 places
+        getsug=1.5+finalNum;
+        payme=getsug*amount;
+        sum=parseFloat(payme).toFixed(2);//fix decimal to 2 places
 
-    //instate+="love";
-    //address2+="hate";
-    price_back.innerHTML=getsug;
-    total_back.innerHTML=sum;
+        //instate+="love";
+        //address2+="hate";
+        price_back.innerHTML=getsug;
+        total_back.innerHTML=sum;
 
 
-    var server_data =[
-        {"amount":amount},
-        {"date":date},
-        {"instate":instate},
-        {"reqb4":reqb4},
-        {"price_back.innerHTML":price_back},
-        {"total_back.innerHTML":total_back}
-    ];
+        var server_data =[
+            {"amount":amount},
+            {"date":date},
+            {"instate":instate},
+            {"reqb4":reqb4},
+            {"price_back.innerHTML":price_back},
+            {"total_back.innerHTML":total_back}
+        ];
 
-    $.ajax({
-        type: "POST",
-        url: "/process_suggest", //maps to route decorator for a particualr function in python that processes the request
-        data: JSON.stringify(server_data), //convert JSON(javascript object notation) into srting format to transfer to the server
-        contentType:"appplication/json",
-        dataType: 'json',
-    });
-    }
+        $.ajax({
+            type: "POST",
+            url: "/process_suggest", //maps to route decorator for a particualr function in python that processes the request
+            data: JSON.stringify(server_data), //convert JSON(javascript object notation) into srting format to transfer to the server
+            contentType:"appplication/json",
+            dataType: 'json',
+        });
+        }
 }
 
