@@ -27,13 +27,13 @@ function get_suggest()
         else
             {GReqfactor=0.03;}
 
-        if (instate== "True" && reqb4 =="False"){
+        if (instate === "True" && reqb4 === "True"){
             finalNum =(0.02-0.01+GReqfactor+0.1) * 1.5;}
-        else if (instate == "False" && reqb4 =="True"){
+        else if (instate === "False" && reqb4 === "True"){
             finalNum = (0.04-0.01+GReqfactor+0.1) * 1.5;}
-        else if( instate =="True" && reqb4=="False"){
+        else if( instate === "True" && reqb4=== "False"){
             finalNum = (0.02+GReqfactor+0.1) * 1.5;}
-        else if (instate=="False" && reqb4 =="False"){
+        else if (instate==="False" && reqb4 ==="False"){
             finalNum =(0.04+GReqfactor+0.1) * 1.5;}
         //else
         //  finalNum = 100000;
