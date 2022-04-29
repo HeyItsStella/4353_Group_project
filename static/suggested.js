@@ -1,7 +1,7 @@
 function get_suggest()
 {  
     
-     //get data from front end using "ID" attribute
+    //get data from front end using "ID" attribute
     var amount = document.getElementById("num-gallons").value;
     //var address2 = document.getElementById("inoutstate").innerHTML;
     var date2=document.getElementById("date").value;
