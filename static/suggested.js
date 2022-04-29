@@ -27,11 +27,7 @@ function get_suggest()
         else
             {GReqfactor=0.03;}
 
-<<<<<<< HEAD
         if (instate== "True" && reqb4 =="True"){
-=======
-        if (instate === "True" && reqb4 === "True"){
->>>>>>> 63f85d2699eaccd366d58deb46b82c320562cac6
             finalNum =(0.02-0.01+GReqfactor+0.1) * 1.5;}
         else if (instate === "False" && reqb4 === "True"){
             finalNum = (0.04-0.01+GReqfactor+0.1) * 1.5;}
