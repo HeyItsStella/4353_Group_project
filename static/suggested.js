@@ -1,4 +1,3 @@
-
 function get_suggest()
 {  
     
@@ -27,8 +26,6 @@ function get_suggest()
             {GReqfactor =0.02;}
         else
             {GReqfactor=0.03;}
-
-     
 
         if (instate== "True" && reqb4 =="False"){
             finalNum =(0.02-0.01+GReqfactor+0.1) * 1.5;}
