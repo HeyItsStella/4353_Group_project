@@ -1,7 +1,7 @@
 function get_suggest()
 {  
     
-     //get data from front end using "ID" attribute
+    //get data from front end using "ID" attribute
     var amount = document.getElementById("num-gallons").value;
     //var address2 = document.getElementById("inoutstate").innerHTML;
     var date2=document.getElementById("date").value;
@@ -27,13 +27,17 @@ function get_suggest()
         else
             {GReqfactor=0.03;}
 
+<<<<<<< HEAD
         if (instate== "True" && reqb4 =="True"){
+=======
+        if (instate === "True" && reqb4 === "True"){
+>>>>>>> 63f85d2699eaccd366d58deb46b82c320562cac6
             finalNum =(0.02-0.01+GReqfactor+0.1) * 1.5;}
-        else if (instate == "False" && reqb4 =="True"){
+        else if (instate === "False" && reqb4 === "True"){
             finalNum = (0.04-0.01+GReqfactor+0.1) * 1.5;}
-        else if( instate =="True" && reqb4=="False"){
+        else if( instate === "True" && reqb4=== "False"){
             finalNum = (0.02+GReqfactor+0.1) * 1.5;}
-        else if (instate=="False" && reqb4 =="False"){
+        else if (instate==="False" && reqb4 ==="False"){
             finalNum =(0.04+GReqfactor+0.1) * 1.5;}
         //else
         //  finalNum = 100000;
@@ -66,7 +70,5 @@ function get_suggest()
             contentType:"appplication/json",
             dataType: 'json',
         });
-        }
-        
+        }       
 }
-
