@@ -1,6 +1,7 @@
 from flask import Flask, flash, request, render_template, session , redirect, jsonify
 from flask_session import Session
 from datetime import datetime
+from tkinter import messagebox
 
 import project_price
 from project_price import *
@@ -241,10 +242,8 @@ def process_quote():
     number = request.form['number']
     date = request.form['date']
     address = request.form['address']
-    price=request.form['price']
+    price= request.form['price']
     
-    
-    flash("Please click on 'get Quote' first!")
     
     #print(price)
     
@@ -253,20 +252,25 @@ def process_quote():
     #    histories[user].append((number, address, date))
     #else:
     #    histories[user] = [(number, address, date)]
-        
-    con = sqlite3.connect(quote_app)
+    if price != "0":
+        con = sqlite3.connect(quote_app)
 
-    #inputData = Price(number, True, True)
-    #inputData.show()
-    #inputData.getSuggested()
-    #inputData.totalDue()
-    #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price里改
+        #inputData = Price(number, True, True)
+        #inputData.show()
+        #inputData.getSuggested()
+        #inputData.totalDue()
+        #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price里改
 
-    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,price))
-    con.commit()
-    con.close()
+        con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,price))
+        con.commit()
+        con.close()
+            
+        return redirect('/quote_history')
+    
+    else:
         
-    return redirect('/quote_history')
+       return redirect(request.url)
+
 
 
 ##need to install datetime module
