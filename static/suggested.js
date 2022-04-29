@@ -1,21 +1,20 @@
 function get_suggest()
 {  
-    
     //get data from front end using "ID" attribute
     var amount = document.getElementById("num-gallons").value;
     //var address2 = document.getElementById("inoutstate").innerHTML;
-    var date2=document.getElementById("date").value;
+    var date=document.getElementById("date").value;
     var instate = document.getElementById("inoutstate").value;
     var reqb4 = document.getElementById("reqb4").value;
-    var price_back = document.getElementById("price");
-    var total_back =document.getElementById("total");
+    var price = document.getElementById("price");
+    var total =document.getElementById("total");
 
     
     finalNum =0;
     getsug =0;
     payme =0;
 
-    if(amount=='' || date2=='' ){
+    if(amount=='' || date=='' ){
         window.alert("Please enter amount and delivery date");
         return;
     }
@@ -46,8 +45,8 @@ function get_suggest()
 
         //instate+="love";
         //address2+="hate";
-        price_back.value=getsug;
-        total_back.value=sum;
+        price.value=getsug;
+        total.value=sum;
 
 
         var server_data =[
@@ -55,8 +54,8 @@ function get_suggest()
             {"date":date},
             {"instate":instate},
             {"reqb4":reqb4},
-            {"price_back.value":price_back},
-            {"total_back.value":total_back}
+            {"price.value":price},
+            {"total.value":total}
         ];
 
         $.ajax({
