@@ -241,6 +241,12 @@ def process_quote():
     number = request.form['number']
     date = request.form['date']
     address = request.form['address']
+    price=request.form['price']
+    
+    
+    flash("Please click on 'get Quote' first!")
+    
+    #print(price)
     
     user = session['user']
     #if user in histories:
@@ -250,13 +256,13 @@ def process_quote():
         
     con = sqlite3.connect(quote_app)
 
-    inputData = Price(number, True, True)
+    #inputData = Price(number, True, True)
     #inputData.show()
-    inputData.getSuggested()
-    inputData.totalDue()
+    #inputData.getSuggested()
+    #inputData.totalDue()
     #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price里改
 
-    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal,final_price) values (?,?,?,?,?);", (user,date,address,number,'60'))
+    con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,price))
     con.commit()
     con.close()
         

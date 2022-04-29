@@ -34,17 +34,14 @@
                     <label class="info" for="num-gallons">Number of Gallons:</label> <br>
                     <input class="info-input" type="number" id="num-gallons" name="number" required min="0" maxlength="8" size="20"> <br>
                     <label class="info" for="address">Delivery Address:</label><br>
-                    <input class="info-input" type="text" id="address" name="address" value="{{address}}" size="20" hidden="hidden">
+                    <input style="text-align:center;" class="info-input" type="text" id="address" name="address" value="{{address}}" readonly placeholder="{{address}}" size="50" >
                     <input class="info-input" type="text" id="inoutstate" name="inoutstate" value="{{inoutstate}}" hidden="hidden">
                     <input class="info-input" type="text" id="reqb4" name="reqb4" value="{{reqb4}}"  hidden="hidden">
                     <!--以上三行作用为在app.py里调用数据库把信息展示到网站页面上并隐藏起来，方便接下来使用request.form()直接找出-->
 
                     
                     <!---用javascript写到id=address上--->
-                    <script>
-                        var a='{{address}}';
-                        document.write("<span style='font-size:25px'>"+ a + "</span>");
-                    </script>
+                    
                     <br><br>
                     <!--need link to address of client profile---->
                     <label class="info" for="date">Delivery Date:</label><br>
@@ -52,15 +49,12 @@
 
                     <!--label class="info" for="price">Suggested Price:</label><br-->
                     <!--input class="info-input" type="text" id="price" name="price" size="20" readonly><br-->
-                    <label class="info">Suggested Price:</label>
-                    <div class="info-input">
-                        <span id="price"></span>
-                    </div><br>
+                    <label class="info">Suggested Price:</label><br>
+                        <input class="info-input" id="price" name="price" readonly value=0><br>
+                    
 
-                    <label class="info">Total Amount:</label>
-                    <div class="info-input">
-                        <span id="total"></span>
-                    </div>
+                    <label class="info">Total Amount:</label><br>
+                        <input class="info-input" id="total" name="total" readonly value=0><br>
                     <!--label class="info" for="total">Total Amount:</label><br-->
                     <!--input class="info-input" type="text" id="total" name="total" size="20" readonly><br-->
 

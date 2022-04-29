@@ -11,6 +11,7 @@ function get_suggest()
     var price_back = document.getElementById("price");
     var total_back =document.getElementById("total");
 
+    
     finalNum =0;
     getsug =0;
     payme =0;
@@ -27,6 +28,7 @@ function get_suggest()
         else
             {GReqfactor=0.03;}
 
+     
 
         if (instate== "True" && reqb4 =="False"){
             finalNum =(0.02-0.01+GReqfactor+0.1) * 1.5;}
@@ -47,8 +49,8 @@ function get_suggest()
 
         //instate+="love";
         //address2+="hate";
-        price_back.innerHTML=getsug;
-        total_back.innerHTML=sum;
+        price_back.value=getsug;
+        total_back.value=sum;
 
 
         var server_data =[
@@ -56,8 +58,8 @@ function get_suggest()
             {"date":date},
             {"instate":instate},
             {"reqb4":reqb4},
-            {"price_back.innerHTML":price_back},
-            {"total_back.innerHTML":total_back}
+            {"price_back.value":price_back},
+            {"total_back.value":total_back}
         ];
 
         $.ajax({
@@ -68,5 +70,6 @@ function get_suggest()
             dataType: 'json',
         });
         }
+        
 }
 
