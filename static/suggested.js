@@ -66,7 +66,5 @@ function get_suggest()
             contentType:"appplication/json",
             dataType: 'json',
         });
-        }
-        
+        }       
 }
-
