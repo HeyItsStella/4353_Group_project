@@ -73,7 +73,7 @@ def land():
 #session管理 /log out Nani1234 Evan1234
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    session.pop('user');
+    session.pop('user')
     return render_template('index.html')
 
 # login form
