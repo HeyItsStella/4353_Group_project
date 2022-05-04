@@ -293,7 +293,7 @@ def quote_history():
     con.row_factory = sqlite3.Row
     # create cursor object
     cur = con.cursor()
-    statement =f"select num_gallon, address, date(delivery_date), price_pergal, price_pergal*num_gallon as Subtotal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName and q.UsrName='{user}';"
+    statement =f"select num_gallon, address, date(delivery_date), Round(price_pergal,2), Round(price_pergal * num_gallon,2) as Subtotal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName and q.UsrName='{user}';"
     cur.execute(statement)
     
     rows = cur.fetchall()
