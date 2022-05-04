@@ -34,6 +34,7 @@
                     <th>Delivery Address</th>
                     <th>Request Date</th>
                     <th>Suggested Price/Gallon</th>
+                    <th>Total Amount</th>
                 </tr>
                 {% for record in history %}
                 <tr>
@@ -41,6 +42,7 @@
                     <td>{{record[1]}}</td>
                     <td>{{record[2]}}</td>
                     <td>{{record[3]}}</td>
+                    <td>{{record[4]}}</td>
                     <!--<td></td>-->
 
                 </tr>{% endfor %}
