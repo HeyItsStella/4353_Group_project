@@ -48,7 +48,7 @@ function get_suggest()
         price.value=getsug;
         total.value=sum;
 
-
+/*
         var server_data =[
             {"amount":amount},
             {"date":date},
@@ -57,11 +57,11 @@ function get_suggest()
             {"price.value":price},
             {"total.value":total}
         ];
-
+*/
         $.ajax({
             type: "POST",
             url: "/process_suggest", //maps to route decorator for a particualr function in python that processes the request
-            data: JSON.stringify(server_data), //convert JSON(javascript object notation) into srting format to transfer to the server
+            //data: JSON.stringify(server_data), //convert JSON(javascript object notation) into srting format to transfer to the server
             contentType:"appplication/json",
             dataType: 'json',
         });

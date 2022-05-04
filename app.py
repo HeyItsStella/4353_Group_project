@@ -193,11 +193,14 @@ def update_profile():
 
 
 #process suggest price module
+#process ajax
 @app.route('/process_suggest', methods=['POST','GET']) 
 def process_suggest_price():
-    if request.method=="POST":
-        suggest_data=request.get_json()
-        print(suggest_data)
+    
+    #if request.method=="POST":
+        #suggest_data=request.get_json()
+        #print(suggest_data)
+    #print("Hello world")
         
     results ={'processed': 'true'}
     return jsonify(results)
