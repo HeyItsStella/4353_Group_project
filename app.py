@@ -220,7 +220,7 @@ def quote_page():
     
     x = str(data_login[5])
     if len(x) != 2:
-        return redirect('/profile')
+        return "please complete your profile first!"
     
     if data_login[5] == "TX":
         inout = True
