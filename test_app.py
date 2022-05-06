@@ -102,6 +102,14 @@ class AppTestCase(unittest.TestCase):
     def test_land(self):
         response = self.client.post("/land")
         assert response.status_code == 302
+
+    def test_land1(self):
+        username = "admin"
+        password = "Nani1234"
+        response = self.client.post("/login", data={"username": username, 'psw': password})
+        assert response.status_code == 302
+        response = self.client.get("/land")
+        assert response
         
     def test_profile(self):
         username = "admin"
