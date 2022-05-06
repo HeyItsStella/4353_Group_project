@@ -17,7 +17,6 @@ Instruction to see code coverage:
 
 Run commond in terminal below
 
-coverage run test_app.py
 coverage report
 
 
