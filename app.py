@@ -1,3 +1,5 @@
+from asyncio.windows_events import NULL
+from pickle import NONE
 from flask import Flask, flash, request, render_template, session , redirect, jsonify
 from flask_session import Session
 from datetime import datetime, date
@@ -61,6 +63,8 @@ histories= {}
 # home page
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    if 'user' in session:
+        return redirect('/land')
     return render_template('index.html')
 
 # landing page
@@ -76,11 +80,13 @@ def land():
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
     session.pop('user')
-    return render_template('index.html')
+    return redirect('/')
 
 # login form
 @app.route('/login', methods=['GET'])
 def login_form():
+    if 'user' in session:
+        return redirect('/land')
     return render_template("pages/login1.html")
 
 # process login form
@@ -308,4 +314,4 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=True)
+if __name__ == '__main__': app.run(host='0.0.0.0', port=5000, debug=True)
