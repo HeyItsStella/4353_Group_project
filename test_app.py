@@ -121,14 +121,14 @@ class AppTestCase(unittest.TestCase):
 
     def test_profile1(self):
         with self.client.session_transaction() as sess:
-            sess['user'] = 'test'
+            sess['user'] = 'admin'
 
         response = self.client.get("/profile")
         assert response#.status_code == 200
 
     def test_profile2(self):
         with self.client.session_transaction() as sess:
-            sess['user'] = 'test'
+            sess['user'] = 'admin'
         profile = {'name': '', 'address1': '', 'address2': '', 'city': '', 'zipcode': '', 'state': ''}
         response = self.client.post("/profile", data=profile)
         assert response.status_code == 200
@@ -136,7 +136,7 @@ class AppTestCase(unittest.TestCase):
    
     def test_profile3(self):
         with self.client.session_transaction() as sess:
-            sess['user'] = 'test'
+            sess['user'] = 'admin'
 
         profile = {'name': '1234', 'address1': '1', 'address2': '2', 'city': 'city', 'zipcode': '12341234', 'state': 'al'}
         response = self.client.post("/profile", data=profile)
@@ -180,7 +180,7 @@ class AppTestCase(unittest.TestCase):
 
     def test_quote_history(self):
         with self.client.session_transaction() as sess:
-            sess['user'] = 'test'
+            sess['user'] = 'admin'
 
         response = self.client.get("/quote_history")
         assert response.status_code == 200
