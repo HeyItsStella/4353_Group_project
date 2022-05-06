@@ -74,7 +74,7 @@ def land():
         return redirect('/login')
     return render_template('pages/landingPage.html')
 
-#Login, Logout, Sign in, and register done by Evan----------------------------------------------------
+#Login, Logout, and register done by Evan----------------------------------------------------
 #session管理 /log out Nani1234 Evan1234
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -154,7 +154,6 @@ def profile_page():
     #    profile = profiles[session['user']]
     
     return render_template("pages/profile.html", profile=profile)
-#-------------------------------------------分割线
 # process profile form
 @app.route('/profile', methods=['POST'])
 def update_profile():
