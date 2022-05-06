@@ -129,7 +129,6 @@ class AppTestCase(unittest.TestCase):
     def test_profile2(self):
         with self.client.session_transaction() as sess:
             sess['user'] = 'test'
-
         profile = {'name': '', 'address1': '', 'address2': '', 'city': '', 'zipcode': '', 'state': ''}
         response = self.client.post("/profile", data=profile)
         assert response.status_code == 200
