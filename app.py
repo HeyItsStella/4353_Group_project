@@ -206,7 +206,7 @@ def process_suggest_price():
     results ={'processed': 'true'}
     return jsonify(results)
 
-    
+
 @app.route('/quote', methods=['GET'])
 def quote_page():
     if not 'user' in session:
@@ -234,7 +234,8 @@ def quote_page():
         requestb4 = False
     else:
         requestb4 = True
-    return render_template("pages/quote_form.html", address=data_login[2] + " " + data_login[3] + " " + data_login[4] + " " + data_login[5] + " " +  data_login[6], inoutstate=inout,reqb4=requestb4)
+    #+ " " + data_login[3] 这个不需要了,address只要一个就好了
+    return render_template("pages/quote_form.html", address=data_login[2] + " " + data_login[4] + " " + data_login[5] + " " +  data_login[6], inoutstate=inout,reqb4=requestb4)
 
 
 # manage quote
