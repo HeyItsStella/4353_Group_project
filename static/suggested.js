@@ -15,9 +15,9 @@ function get_suggest()
     payme =0;
     var curDate = new Date(); //create current time object, this is in the form of date + time to milliseconds
     var stDate = curDate.getFullYear()+'-'+(curDate.getMonth()+1)+'-'+curDate.getDate();  //convert date to xxxx-yy-zz formart
-
+    let date2 = date.toString();
     if(amount=='' || date=='' ){
-        window.alert("Please enter amount and delivery date");
+        window.alert("Please enter valid amount and delivery date");
         return;
     }
 
@@ -28,7 +28,7 @@ function get_suggest()
     }
 
     
-    if(date<= stDate){
+    if(date2 <= stDate){
         window.alert("Delivery date can not be in the past or today");
         return;
 
