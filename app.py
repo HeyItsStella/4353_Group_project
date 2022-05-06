@@ -13,6 +13,8 @@ import os.path
 import sqlite3
 import hashlib
 
+from sqlalchemy import false, true
+
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #test price modeule evan写的在这里
 #使用这个方式传入数据,class名字是Price
@@ -58,7 +60,7 @@ users = {'test': 'Abc12345'}
 profiles = {}
 histories= {}
 
-
+#Login, Logout, and register done by Evan----------------------------------------------------
 # home page
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -74,7 +76,6 @@ def land():
         return redirect('/login')
     return render_template('pages/landingPage.html')
 
-#Login, Logout, and register done by Evan----------------------------------------------------
 #session管理 /log out Nani1234 Evan1234
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -154,6 +155,7 @@ def profile_page():
     #    profile = profiles[session['user']]
     
     return render_template("pages/profile.html", profile=profile)
+
 # process profile form
 @app.route('/profile', methods=['POST'])
 def update_profile():
@@ -196,7 +198,6 @@ def update_profile():
 #testcase1.getSuggested()
 #print(testcase1.totalDue())
 
-
 #process suggest price module
 #process ajax
 @app.route('/process_suggest', methods=['POST','GET']) 
@@ -209,7 +210,6 @@ def process_suggest_price():
         
     results ={'processed': 'true'}
     return jsonify(results)
-
 
 @app.route('/quote', methods=['GET'])
 def quote_page():
@@ -252,10 +252,8 @@ def process_quote():
     address = request.form['address']
     price= request.form['price']
     
-    
     date2=datetime.strptime(date1, "%Y-%m-%d").date()
     number2 =int(number)
-    
     
     #print(price)
     
@@ -284,8 +282,6 @@ def process_quote():
         #raise TypeError("Please use a valid date or get a quote before submit")
         #return redirect(request.url)
 
-
-
 ##need to install datetime module
 @app.route('/quote_history', methods=['GET'])
 def quote_history():
@@ -297,7 +293,6 @@ def quote_history():
     user = session['user']
     #if user in histories:
     #    history = histories[user]
-        
     #####   connecting to db
     con = sqlite3.connect(quote_app)
     con.row_factory = sqlite3.Row
@@ -311,4 +306,5 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0', port=5000, debug=True)
+
+if __name__ == '__main__': app.run(host='0.0.0.0', port=5000, debug=true)
