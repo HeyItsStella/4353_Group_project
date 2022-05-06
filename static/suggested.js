@@ -13,14 +13,27 @@ function get_suggest()
     finalNum =0;
     getsug =0;
     payme =0;
+    var curDate = new Date(); //create current time object, this is in the form of date + time to milliseconds
+    var stDate = curDate.getFullYear()+'-'+(curDate.getMonth()+1)+'-'+curDate.getDate();  //convert date to xxxx-yy-zz formart
 
     if(amount=='' || date=='' ){
         window.alert("Please enter amount and delivery date");
         return;
     }
 
-    else {
-        
+    if(amount<=0){
+        window.alert("Please enter valid amount");
+        //window.alert(date.getTime());
+        return;
+    }
+
+    
+    if(date<= stDate){
+        window.alert("Delivery date can not be in the past or today");
+        return;
+
+    }
+      
         if (amount>1000)
             {GReqfactor =0.02;}
         else
@@ -34,17 +47,12 @@ function get_suggest()
             finalNum = (0.02+GReqfactor+0.1) * 1.5;}
         else if (instate==="False" && reqb4 ==="False"){
             finalNum =(0.04+GReqfactor+0.1) * 1.5;}
-        //else
-        //  finalNum = 100000;
-        
-        // return finalNum;
+       
 
         getsug=1.5+finalNum;
         payme=getsug*amount;
         sum=parseFloat(payme).toFixed(2);//fix decimal to 2 places
 
-        //instate+="love";
-        //address2+="hate";
         price.value=getsug;
         total.value=sum;
 
@@ -65,5 +73,5 @@ function get_suggest()
             contentType:"appplication/json",
             dataType: 'json',
         });
-        }       
+               
 }
