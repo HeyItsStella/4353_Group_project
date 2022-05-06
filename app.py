@@ -1,6 +1,6 @@
 from flask import Flask, flash, request, render_template, session , redirect, jsonify
 from flask_session import Session
-from datetime import datetime
+from datetime import datetime, date
 from tkinter import messagebox
 
 #import project_price
@@ -243,9 +243,13 @@ def process_quote():
         return redirect('/login')
     
     number = request.form['number']
-    date = request.form['date']
+    date1 = request.form['date']
     address = request.form['address']
     price= request.form['price']
+    
+    
+    date2=datetime.strptime(date1, "%Y-%m-%d").date()
+    number2 =int(number)
     
     
     #print(price)
@@ -255,7 +259,7 @@ def process_quote():
     #    histories[user].append((number, address, date))
     #else:
     #    histories[user] = [(number, address, date)]
-    if price != "0":
+    if price != "0" and number2>0 and date2>date.today():
         con = sqlite3.connect(quote_app)
 
         #inputData = Price(number, True, True)
@@ -264,15 +268,16 @@ def process_quote():
         #inputData.totalDue()
         #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price里改
 
-        con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date,address,number,price))
+        con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date1,address,number,price))
         con.commit()
         con.close()
             
         return redirect('/quote_history')
     
     else:
-        
-       return redirect(request.url)
+        raise Exception("Please use a valid date or get a quote before submit")
+        #raise TypeError("Please use a valid date or get a quote before submit")
+        #return redirect(request.url)
 
 
 
