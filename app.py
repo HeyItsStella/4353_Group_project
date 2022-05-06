@@ -30,8 +30,8 @@ co = sqlite3.connect(quote_app)
 c = co.cursor()
 ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='login_customer_info'; """).fetchall()
 
-if ckTableExist == []:
-    ###创建table的statement，需要完善+修改
+"""if ckTableExist == []:
+    ###创建table的statement-需要完善+修改
     c.execute('''CREATE TABLE "login_customer_info" (
 	"UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
 	"Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
@@ -43,7 +43,7 @@ if ckTableExist == []:
 	PRIMARY KEY("UsrName")
     )''') 
 else:
-    pass
+    pass"""
 
 co.commit()
 co.close()
@@ -66,7 +66,8 @@ def home():
 # landing page
 @app.route('/land', methods=['GET', 'POST'])
 def land():
-    if not 'user' in session: 
+    #what?????????????????????????????????????????
+    if not 'user' in session:
         return redirect('/login')
     return render_template('pages/landingPage.html')
 

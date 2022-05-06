@@ -55,13 +55,19 @@ class AppTestCase(unittest.TestCase):
         password = "123456"
         response = self.client.post("/registration", data={"usrname": username, "psw": password, "psw-con": password})
         assert response.status_code == 302
+
+    def test_signup5(self):
+        username = "signup5"
+        password = "Signup5123"
+        response = self.client.post("/registration", data={"usrname": username, "psw": password, "psw-con": password})
+        assert response.status_code == 302
     
     def test_login(self):
         username = "123459"
         password = "212341235413451345"
         response = self.client.get("/login")
         assert response.status_code == 200
-        assert " <title>Login</title>" in  response.get_data(as_text=True)
+        assert "<title>Login</title>" in  response.get_data(as_text=True)
         
     def test_login2(self):
         username = "test"
@@ -73,6 +79,16 @@ class AppTestCase(unittest.TestCase):
         username = "ADMIN"
         password = "Nani1234"
         response = self.client.post("/login", data={"username": username, 'psw': password})
+        assert response.status_code == 302
+
+    def test_login4(self):
+        username = "thisFails"
+        password = "Nani1234"
+        response = self.client.post("/login", data={"username": username, 'psw': password})
+        assert response.status_code == 302
+
+    def test_logout(self):
+        response = self.client.post("/logout")
         assert response.status_code == 302
         
     def test_land(self):
