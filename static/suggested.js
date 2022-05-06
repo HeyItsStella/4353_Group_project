@@ -49,11 +49,13 @@ function get_suggest()
             finalNum =(0.04+GReqfactor+0.1) * 1.5;}
        
 
-        getsug=1.5+finalNum;
-        payme=getsug*amount;
-        sum=parseFloat(payme).toFixed(2);//fix decimal to 2 places
+        getsug1=1.5+finalNum;
+        getsug2=getsug1.toFixed(2);
 
-        price.value=getsug;
+        payme=getsug2*amount;
+        sum=payme.toFixed(2);//fix decimal to 2 places
+
+        price.value=getsug2;
         total.value=sum;
 
 /*
