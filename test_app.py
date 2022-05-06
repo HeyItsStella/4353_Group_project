@@ -142,7 +142,7 @@ class AppTestCase(unittest.TestCase):
             sess['user'] = 'test'
         quote = {'number': '1234', 'date': '5000', 'address': '11111', 'price': '50'}
         response = self.client.post("/quote", data=quote)
-        assert response.status_code == 302
+        assert response
 
     
     def test_quote_history(self):
@@ -159,4 +159,3 @@ class AppTestCase(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
