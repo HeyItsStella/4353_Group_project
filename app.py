@@ -13,7 +13,6 @@ import os.path
 import sqlite3
 import hashlib
 
-
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #test price modeule evan写的在这里
 #使用这个方式传入数据,class名字是Price
