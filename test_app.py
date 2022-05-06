@@ -7,6 +7,7 @@ from app import app
 #   coverage report -m
 #   coverage html
 
+#done by Jack and Evan
 class AppTestCase(unittest.TestCase):
     def setUp(self):
         self.ctx = app.app_context()
@@ -133,7 +134,7 @@ class AppTestCase(unittest.TestCase):
         response = self.client.post("/profile", data=profile)
         assert response.status_code == 200
         assert  "Zipcode is too short" in response.get_data(as_text=True)
-   
+
     def test_profile3(self):
         with self.client.session_transaction() as sess:
             sess['user'] = 'admin'
@@ -141,8 +142,6 @@ class AppTestCase(unittest.TestCase):
         profile = {'name': '1234', 'address1': '1', 'address2': '2', 'city': 'city', 'zipcode': '12341234', 'state': 'al'}
         response = self.client.post("/profile", data=profile)
         assert response.status_code == 302
-
-
 
     def test_quote0(self):
         response = self.client.get("/quote")
