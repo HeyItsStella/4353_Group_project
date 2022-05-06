@@ -9,7 +9,6 @@ function get_suggest()
     var price = document.getElementById("price");
     var total =document.getElementById("total");
 
-    
     finalNum =0;
     getsug =0;
     payme =0;
@@ -27,13 +26,10 @@ function get_suggest()
         return;
     }
 
-    
     if(date2 <= curDate){
         window.alert("Delivery date can not be in the past or today");
         return;
-
     }
-      
         if (amount>1000)
             {GReqfactor =0.02;}
         else
@@ -48,7 +44,6 @@ function get_suggest()
         else if (instate==="False" && reqb4 ==="False"){
             finalNum =(0.04+GReqfactor+0.1) * 1.5;}
        
-
         getsug1=1.5+finalNum;
         getsug2=getsug1.toFixed(2);
 
