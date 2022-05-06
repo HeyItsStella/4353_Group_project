@@ -3,8 +3,8 @@ from flask_session import Session
 from datetime import datetime
 from tkinter import messagebox
 
-import project_price
-from project_price import *
+#import project_price
+#from project_price import *
 
 import os
 import os.path
