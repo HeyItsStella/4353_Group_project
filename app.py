@@ -35,7 +35,7 @@ ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND
 
 """
 if ckTableExist == []:
-    ###创建table的statement-需要完善+修改
+    ###创建table的statement
     c.execute('''CREATE TABLE "login_customer_info" (
 	"UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
 	"Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
