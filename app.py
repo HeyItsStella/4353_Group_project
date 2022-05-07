@@ -1,9 +1,11 @@
-from asyncio.windows_events import NULL
-from pickle import NONE
+#from asyncio.windows_events import NULL
+#from pickle import NONE
 from flask import Flask, flash, request, render_template, session , redirect, jsonify
 from flask_session import Session
 from datetime import datetime, date
 from tkinter import messagebox
+from tkinter import *
+import tkinter as tk
 
 #import project_price
 #from project_price import *
@@ -253,6 +255,7 @@ def process_quote():
     date1 = request.form['date']
     address = request.form['address']
     price= request.form['price']
+    total=request.form['total']
     
     date2=datetime.strptime(date1, "%Y-%m-%d").date()
     number2 =int(number)
@@ -273,13 +276,14 @@ def process_quote():
         #inputData.totalDue()
         #inputData.totalDue() 就可以知道需要多少钱了，param也可以从Price里改
 
-        con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal) values (?,?,?,?,?);", (user,date1,address,number,price))
+        con.execute("insert into quote_history(UsrName,delivery_date,address,num_gallon,price_pergal,total_price) values (?,?,?,?,?,?);", (user,date1,address,number,price,total))
         con.commit()
         con.close()
             
         return redirect('/quote_history')
     
     else:
+    
         raise Exception("Please use a valid date or get a quote before submit")
         #raise TypeError("Please use a valid date or get a quote before submit")
         #return redirect(request.url)
@@ -300,7 +304,7 @@ def quote_history():
     con.row_factory = sqlite3.Row
     # create cursor object
     cur = con.cursor()
-    statement =f"select num_gallon, address, date(delivery_date), Round(price_pergal,2), Round(price_pergal * num_gallon,2) as Subtotal from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName and q.UsrName='{user}';"
+    statement =f"select num_gallon, address, date(delivery_date), Round(price_pergal,2), Round(total_price,2) from quote_history as q, login_customer_info as i where q.UsrName=i.UsrName and q.UsrName='{user}';"
     cur.execute(statement)
     
     rows = cur.fetchall()

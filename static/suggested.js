@@ -30,6 +30,7 @@ function get_suggest()
         window.alert("Delivery date can not be in the past or today");
         return;
     }
+    
         if (amount>1000)
             {GReqfactor =0.02;}
         else
