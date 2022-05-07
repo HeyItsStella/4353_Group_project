@@ -1,3 +1,5 @@
+from asyncio.windows_events import NULL
+from pickle import NONE
 from flask import Flask, flash, request, render_template, session , redirect, jsonify
 from flask_session import Session
 from datetime import datetime, date
@@ -11,6 +13,7 @@ import os.path
 import sqlite3
 import hashlib
 
+from sqlalchemy import false, true
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #test price modeule evan写的在这里
@@ -30,8 +33,9 @@ co = sqlite3.connect(quote_app)
 c = co.cursor()
 ckTableExist = c.execute("""SELECT name FROM sqlite_master WHERE type='table'AND name='login_customer_info'; """).fetchall()
 
+"""
 if ckTableExist == []:
-    ###创建table的statement，需要完善+修改
+    ###创建table的statement
     c.execute('''CREATE TABLE "login_customer_info" (
 	"UsrName"	TEXT NOT NULL CHECK(length(UsrName)>0) UNIQUE COLLATE BINARY,
 	"Pasword"	TEXT NOT NULL CHECK(length(Pasword)>=8) COLLATE BINARY,
@@ -44,6 +48,7 @@ if ckTableExist == []:
     )''') 
 else:
     pass
+"""
 
 co.commit()
 co.close()
@@ -57,29 +62,33 @@ users = {'test': 'Abc12345'}
 profiles = {}
 histories= {}
 
-
+#Login, Logout, and register done by Evan----------------------------------------------------
 # home page
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    if 'user' in session:
+        return redirect('/land')
     return render_template('index.html')
 
 # landing page
 @app.route('/land', methods=['GET', 'POST'])
 def land():
-    if not 'user' in session: 
+    #what?????????????????????????????????????????
+    if not 'user' in session:
         return redirect('/login')
     return render_template('pages/landingPage.html')
 
-#Login, Logout, Sign in, and register done by Evan----------------------------------------------------
 #session管理 /log out Nani1234 Evan1234
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
     session.pop('user')
-    return render_template('index.html')
+    return redirect('/')
 
 # login form
 @app.route('/login', methods=['GET'])
 def login_form():
+    if 'user' in session:
+        return redirect('/land')
     return render_template("pages/login1.html")
 
 # process login form
@@ -148,7 +157,7 @@ def profile_page():
     #    profile = profiles[session['user']]
     
     return render_template("pages/profile.html", profile=profile)
-#-------------------------------------------分割线
+
 # process profile form
 @app.route('/profile', methods=['POST'])
 def update_profile():
@@ -191,7 +200,6 @@ def update_profile():
 #testcase1.getSuggested()
 #print(testcase1.totalDue())
 
-
 #process suggest price module
 #process ajax
 @app.route('/process_suggest', methods=['POST','GET']) 
@@ -205,7 +213,6 @@ def process_suggest_price():
     results ={'processed': 'true'}
     return jsonify(results)
 
-    
 @app.route('/quote', methods=['GET'])
 def quote_page():
     if not 'user' in session:
@@ -233,8 +240,8 @@ def quote_page():
         requestb4 = False
     else:
         requestb4 = True
-    return render_template("pages/quote_form.html", address=data_login[2] + " " + data_login[3] + " " + data_login[4] + " " + data_login[5] + " " +  data_login[6], inoutstate=inout,reqb4=requestb4)
-
+    #+ " " + data_login[3] 这个不需要了,address只要一个就好了
+    return render_template("pages/quote_form.html", address=data_login[2] + " " + data_login[4] + " " + data_login[5] + " " +  data_login[6], inoutstate=inout,reqb4=requestb4)
 
 # manage quote
 @app.route('/quote', methods=['POST'])
@@ -247,10 +254,8 @@ def process_quote():
     address = request.form['address']
     price= request.form['price']
     
-    
     date2=datetime.strptime(date1, "%Y-%m-%d").date()
     number2 =int(number)
-    
     
     #print(price)
     
@@ -279,8 +284,6 @@ def process_quote():
         #raise TypeError("Please use a valid date or get a quote before submit")
         #return redirect(request.url)
 
-
-
 ##need to install datetime module
 @app.route('/quote_history', methods=['GET'])
 def quote_history():
@@ -292,7 +295,6 @@ def quote_history():
     user = session['user']
     #if user in histories:
     #    history = histories[user]
-        
     #####   connecting to db
     con = sqlite3.connect(quote_app)
     con.row_factory = sqlite3.Row
@@ -306,4 +308,5 @@ def quote_history():
     return render_template("pages/quote_history.html", history=rows)
 
 
-if __name__ == '__main__': app.run(host='0.0.0.0',port=5000, debug=True)
+
+if __name__ == '__main__': app.run(host='0.0.0.0', port=5000, debug=true)

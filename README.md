@@ -13,12 +13,19 @@ Instructions to run locally
 
 
 
-Instruction on code coverage
+Instruction to see code coverage:
 
 Run commond in terminal below
 
-coverage run test_app.py
-coverage report -m
+coverage report
+
+
+
+If you wish to see a more detailed report, run above two line then
+run the following line:
+
 coverage html
+
+Then open htmlcov/index.html in your browser, to see the report in HTML format.
 
 —————————————————————————————————————————————
